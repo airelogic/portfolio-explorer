@@ -1,7 +1,7 @@
 {
   "name": "portfolio-explorer",
   "version": "1.0.0",
-  "description": "portfolio-explorer React component",
+  "description": "Portfolio Explorer React component",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
