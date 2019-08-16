@@ -8,7 +8,7 @@ class HorizontalGuideSVG extends Component {
             <text y={yoff - 2} x={this.props.x1 + 2}
                 fill="#666666"
                 font="ubuntu"
-                font-size="8px">{yoff}</text>
+                fontSize="8px">{yoff}</text>
             <line
                 y1={yoff}
                 y2={yoff}

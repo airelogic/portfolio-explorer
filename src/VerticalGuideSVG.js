@@ -8,7 +8,7 @@ class VerticalGuideSVG extends Component {
             <text x={xoff + 2} y={this.props.y1 + 10}
                 fill="#666666"
                 font="ubuntu"
-                font-size="8px">{xoff}</text>
+                fontSize="8px">{xoff}</text>
             <line
                 x1={xoff}
                 x2={xoff}

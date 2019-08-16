@@ -6,16 +6,16 @@ import PropTypes from 'prop-types';
 class AreaArcSVG extends Component {
 
     render() {
-        const {r1, r2, strokeWidth, ...passThroughProps} = this.props;
-        const textRot = (this.props.rot + (this.props.deg / 2)) * -1;
+        const {r1, r2, rot, strokeWidth, ...passThroughProps} = this.props;
+        const textRot = this.props.deg / - 2;
         const textTrans = "rotate(" + textRot + ",0,0)";
+        const rotTrans =  "rotate(" + rot + ",0,0)";
         return (
-            <React.Fragment>         
-                     
+            <g transform={rotTrans} opacity="0.9">
                 <AreaTeamArcSVG r={r2} strokeWidth={strokeWidth} {...passThroughProps} />
                 <AreaLeadArcSVG r={r1} {...passThroughProps} />
-                <text x={r1*1.3} y="0" fill="black" font-size="8" transform={textTrans}>{this.props.name}</text>  
-            </React.Fragment>
+                <text alignmentBaseline="middle" x={r1*1.3} y="0" fill="black" fontSize="8" transform={textTrans}>{this.props.name}</text>  
+            </g>
         );
     }
 }
