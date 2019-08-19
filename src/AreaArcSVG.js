@@ -6,13 +6,31 @@ import './AreaArcSVG.css';
 
 class AreaArcSVG extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            tooltip: false,
+            currentPortfolioItem: {},
+        };
+        this.showAreaDetails = this.showAreaDetails.bind(this);
+        this.hideAreaDetails = this.hideAreaDetails.bind(this);
+    }
+
+    showAreaDetails = () => {
+        this.props.showToolTip(this.props.portFolioId);
+    };
+
+    hideAreaDetails = () => {
+        console.log('Bye...' + this.props.hideToolTip);
+        this.props.hideToolTip();
+    };
+
     render() {
-        const {r1, r2, rot, strokeWidth, ...passThroughProps} = this.props;
+        const {r1, r2, rot, strokeWidth, portFolioId, showToolTip, hideToolTip, ...passThroughProps} = this.props;
         const textRot = this.props.deg / - 2;
         const textTrans = "rotate(" + textRot + ",0,0)";
-        const rotTrans =  "rotate(" + rot + ",0,0)";
         return (
-            <g className="portfolioArea">
+            <g className="portfolioArea" {...passThroughProps} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
                 <animateTransform attributeName="transform" attributeType="XML" type="rotate" to={rot} dur="1s" begin="0s" repeatCount="1" fill="freeze"/>
                 {/* <animateTransform id="portFolioAreaGrow" attributeName="transform" attributeType="XML" type="scale" from="1.0" to="1.2" dur="1s" begin="mouseover" additive="sum" fill="freeze" restart="whenNotActive"/>
                 <animateTransform id="portFolioShrink" attributeName="transform" attributeType="XML" type="scale" from="1.0" to="0.8333" dur="1s" begin="mouseout" additive="sum" fill="freeze" restart="whenNotActive"/> */}
