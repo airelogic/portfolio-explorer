@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AireLogicCogSVG from './AireLogicCogSVG';
 import OversightCircle from "./OversightCircle";
-import OversightArcSVG from './OversightArcSVG';
+import PortfolioGroupArcSVG from './PortfolioGroupArcSVG';
 import AreaArcSVG from './AreaArcSVG';
 import PropTypes from 'prop-types';
 import ToolTipOverlay from './TootipOverlay';
@@ -24,9 +24,9 @@ class PortfolioExplorer extends Component {
         this.onHoverMove = this.onHoverMove.bind(this);
     }
 
-    onShowToolTip = (portfolioItem) => {
+    onShowToolTip = (toolTipInfo) => {
         this.setState({ show: true });
-        this.setState({currentPortfolioItem: portfolioItem});
+        this.setState({toolTipInfo: toolTipInfo});
     };
 
     onHoverMove = (e) => {  
@@ -79,14 +79,14 @@ class PortfolioExplorer extends Component {
         portfolio.portfolioGroups.forEach((portfolioGroup, index) => { 
             var groupAreaCount = portfolioGroup.areas.length;
             var deg = (fullProjDeg * groupAreaCount) - 3;
-            groupsSVG.push(<OversightArcSVG r={40} deg={deg} rot={rotInitial} key={index}/>);
+            groupsSVG.push(<PortfolioGroupArcSVG r={40} deg={deg} rot={rotInitial} key={index}  showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioGroup={portfolioGroup}/>);
             rotInitial -= (fullProjDeg * groupAreaCount);
         }); 
         return (
             <React.Fragment>
                 <div className="portfolioExplorer">
                     <h2>{title}</h2>
-                    <ToolTipOverlay visible={this.state.show} x={this.state.toolTipX} y={this.state.toolTipY} tooltipInfo={this.state.currentPortfolioItem}/>
+                    <ToolTipOverlay visible={this.state.show} x={this.state.toolTipX} y={this.state.toolTipY} tooltipInfo={this.state.toolTipInfo}/>
                     <svg viewBox="-250 -250 500 500" preserveAspectRatio="xMinYMin meet">
                         <PortfolioExplorerGuides visible={true}/>
                         <AireLogicCogSVG transform="scale(2 2),translate(-62 -161)"/>

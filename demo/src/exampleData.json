@@ -3,6 +3,7 @@
     "portfolioGroups": [
         {
             "groupTitle": "Group A",
+            "groupDescription": "Eu mea inermis invidunt. Pro epicuri consequat ne. Ea idque persius qui, per te eros mediocrem, tamquam legendos sapientem mei ea. Nec in dolore omittam, his ut saepe eirmod.",
             "groupResponsiblePerson": {
                 "name": "Bob the builder",
                 "email": "bob@builder.com",
@@ -29,6 +30,7 @@
         },
         {
             "groupTitle": "Group B",
+            "groupDescription": "Ea usu magna diceret facilisis. Persequeris definitiones ei eum, ullum eirmod tractatos id eum. Volutpat intellegam mei no, ne est nibh temporibus. Ad debet salutatus patrioque nam. Eam pertinax periculis imperdiet ad, id erat vocibus temporibus vis.",
             "groupResponsiblePerson": {
                 "name": "Fireman Sam",
                 "email": "sam@pontypandy.org.uk",
@@ -60,6 +62,7 @@
         },
         {
             "groupTitle": "Group C",
+            "groupDescription": "Quaeque maluisset intellegebat ad pri, pro elitr dicam ut, eu pro eros iusto accusamus. Suas quas saperet no per, perfecto periculis sea ei. Commodo tractatos ea has. Ex per albucius pericula, tritani pertinacia ex sea, mentitum volutpat nam ad. Ut vel altera urbanitas, mel te nihil molestie democritum, eos id tamquam impedit deleniti. Fugit vituperatoribus cum cu, an accusata recusabo indoctum has, vis ei saperet nominavi.",
             "groupResponsiblePerson": {
                 "name": "Fireman Sam",
                 "email": "sam@pontypandy.org.uk",
@@ -76,6 +79,7 @@
         },
         {
             "groupTitle": "Group D",
+            "groupDescription": "Cu augue semper sententiae qui, at mea malis scripserit. Tacimates disputando at quo, mei te iudico audiam vituperatoribus. Invidunt menandri accommodare eum ei. His clita animal noluisse ei, moderatius intellegebat vim ei. Sit ad veniam delectus cotidieque. Corpora adipisci philosophia in nec, audire copiosae reformidans cum cu, affert commodo signiferumque eu his. Pri at duis nusquam neglegentur, aliquid quaerendum usu ea.",
             "groupResponsiblePerson": {
                 "name": "Fireman Sam",
                 "email": "sam@pontypandy.org.uk",
