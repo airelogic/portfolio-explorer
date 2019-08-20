@@ -3,7 +3,6 @@ import AreaTeamArcSVG from './AreaTeamArcSVG';
 import AreaLeadArcSVG from './AreaLeadArcSVG';
 import PropTypes from 'prop-types';
 import './AreaArcSVG.css';
-import { timingSafeEqual } from 'crypto';
 
 class AreaArcSVG extends Component {
 
@@ -18,7 +17,7 @@ class AreaArcSVG extends Component {
     }
 
     showAreaDetails = () => {
-        this.props.showToolTip(this.props.portFolioId);
+        this.props.showToolTip(this.props.portfolioItem);
     };
 
     hideAreaDetails = () => {
@@ -26,7 +25,7 @@ class AreaArcSVG extends Component {
     };
 
     render() {
-        const {r1, r2, rot, strokeWidth, portFolioId, showToolTip, hideToolTip, ...passThroughProps} = this.props;
+        const {r1, r2, rot, strokeWidth, portfolioItem, showToolTip, hideToolTip, ...passThroughProps} = this.props;
         const textRot = this.props.deg / - 2;
         const textRotTx = "rotate(" + textRot + ",0,0)";
         //const textDirection = rot > 180 ? "rtl" : "ltr"; trying to reverse text - needs more thought
@@ -37,7 +36,7 @@ class AreaArcSVG extends Component {
                 <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.1; 1.03; 1.0" begin="mouseover" additive="sum" restart="whenNotActive"/>
                 <AreaTeamArcSVG r={r2} strokeWidth={strokeWidth} {...passThroughProps} />
                 <AreaLeadArcSVG r={r1} {...passThroughProps} />
-                <text alignmentBaseline="middle" direction={textDirection} x={r1*1.3} y="0" fill="black" fontSize="8" transform={textRotTx}>{this.props.name}</text>  
+                <text alignmentBaseline="middle" direction={textDirection} x={r1*1.3} y="0" fill="black" fontSize="8" transform={textRotTx}>{this.props.portfolioItem.title}</text>  
             </g>
         );
     }

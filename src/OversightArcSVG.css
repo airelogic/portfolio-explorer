@@ -1,0 +1,7 @@
+.oversightArc {
+    opacity: 0.7;
+}
+
+.oversightArc:hover {
+    opacity: 1.0;
+}
