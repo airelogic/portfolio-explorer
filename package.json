@@ -20,6 +20,8 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "react-avatar": "^3.6.0",
+    "react-gravatar": "^2.6.3",
     "react-sizeme": "^2.6.7"
   },
   "peerDependencies": {

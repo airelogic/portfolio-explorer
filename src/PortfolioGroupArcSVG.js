@@ -13,7 +13,8 @@ class PortfolioGroupArcSVG extends Component {
     showAreaDetails = () => {
         var toolTipInfo = {
             title: this.props.portfolioGroup.groupTitle,
-            description: this.props.portfolioGroup.groupDescription
+            description: this.props.portfolioGroup.groupDescription,
+            responsiblePerson: this.props.portfolioGroup.groupResponsiblePerson
         };
         this.props.showToolTip(toolTipInfo);
     };
