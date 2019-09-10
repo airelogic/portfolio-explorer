@@ -1,6 +1,6 @@
 .portfolioExplorer {
     font-family: Arial, Helvetica, sans-serif;
-    background: whitesmoke;
+    background: inherit;
     max-width: 900px;
     max-height: 100%;
 }

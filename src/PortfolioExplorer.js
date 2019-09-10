@@ -72,7 +72,7 @@ class PortfolioExplorer extends Component {
         areas.forEach((portfolioItem, index) => {
             let strokeWidth = strokeWidthMax * ((portfolioItem.scale - 1) / itemScaleMax);
             let r2 = r1 + strokeWidth / 2;
-            let pRot = index * fullProjDeg;
+            let pRot = index * fullProjDeg * -1;
             areasSVG.push(<AreaArcSVG showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioItem={portfolioItem} key={index} r1={r1} r2={r2} deg={projDeg} rot={pRot} strokeWidth={strokeWidth}/>);
         });
         var rotInitial = 0;
@@ -88,7 +88,7 @@ class PortfolioExplorer extends Component {
                     <h2>{title}</h2>
                     <ToolTipOverlay visible={this.state.show} x={this.state.toolTipX} y={this.state.toolTipY} tooltipInfo={this.state.toolTipInfo}/>
                     <svg viewBox="-250 -250 500 500" preserveAspectRatio="xMinYMin meet">
-                        <PortfolioExplorerGuides visible={true}/>
+                        <PortfolioExplorerGuides visible={false}/>
                         <AireLogicCogSVG transform="scale(2 2),translate(-62 -161)"/>
                         <OversightCircle cx={0} cy={0} r={25}/>
                         {groupsSVG}
