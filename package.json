@@ -1,6 +1,6 @@
 {
   "name": "@odlingsmee/portfolio-explorer",
-  "version": "1.0.0-6",
+  "version": "1.0.0-10",
   "description": "Portfolio Explorer React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,6 +20,7 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "avatar": "^0.1.0",
     "react-avatar": "^3.6.0",
     "react-gravatar": "^2.6.3",
     "react-sizeme": "^2.6.7"
@@ -32,10 +33,13 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
-  "author": "",
-  "homepage": "",
+  "author": "Michael Odling-Smee",
+  "homepage": "airelogic.com",
   "license": "MIT",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:airelogic/portfolio-explorer.git"
+  },
   "keywords": [
     "react-component"
   ]

@@ -17,6 +17,14 @@
   align-items: stretch;
 }
 
+.subtle {
+  color: #666;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
 .personName {
   text-transform: capitalize;
   display: inline-block;
