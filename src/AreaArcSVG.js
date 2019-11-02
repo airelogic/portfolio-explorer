@@ -17,7 +17,13 @@ class AreaArcSVG extends Component {
     }
 
     showAreaDetails = () => {
-        this.props.showToolTip(this.props.portfolioItem);
+        var toolTipInfo = {
+            title: this.props.portfolioItem.title,
+            description: this.props.portfolioItem.description,
+            responsiblePerson: [this.props.portfolioItem.responsiblePerson],
+            team: this.props.portfolioItem.team
+        };
+        this.props.showToolTip(toolTipInfo);
     };
 
     hideAreaDetails = () => {

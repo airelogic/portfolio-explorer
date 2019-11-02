@@ -17,12 +17,23 @@ class ToolTipOverlay extends Component {
         var xOffset = this.props.x < 0.6 * pageWidth ? cursorDistance : -1 * (width + cursorDistance);
         var yOffset = this.props.y < 0.6 * pageHeight ? cursorDistance : -1 * (height + cursorDistance);
         var teamAvatars = [];
+        var responsiblePersons = [];
+        if (this.props.tooltipInfo && this.props.tooltipInfo.responsiblePerson) {
+            this.props.tooltipInfo.responsiblePerson.forEach((person, index) => {
+                responsiblePersons.push(
+                    <React.Fragment>
+                        <Avatar name={person.name} size={40} round="4px" email={person.email} className="responsiblePersonAvatar" />
+                        <div className="personName">{person.name}</div>
+                    </React.Fragment>
+                );
+            });
+        }
         if (this.props.tooltipInfo && this.props.tooltipInfo.team) {
             this.props.tooltipInfo.team.forEach((person, index) => {
                 teamAvatars.push(<Avatar key={index} name={person.name} size={40} round="4px" email={person.email} className="teamAvatar"/>);
             });
         }
-        var hasTeamMembers = responsiblePerson || teamAvatars.length > 0;
+        var hasTeamMembers = responsiblePersons.length > 0 || teamAvatars.length > 0;
         return (
             <React.Fragment>
                 {visible &&
@@ -36,10 +47,7 @@ class ToolTipOverlay extends Component {
                         {hasTeamMembers &&
                             <div className="team">
                                 {responsiblePerson &&
-                                    <React.Fragment>
-                                        <Avatar name={this.props.tooltipInfo.responsiblePerson.name} size={40} round="4px" email={this.props.tooltipInfo.responsiblePerson.email}  className="responsiblePersonAvatar" />
-                                        <div className="personName">{this.props.tooltipInfo.responsiblePerson.name}</div>
-                                    </React.Fragment>
+                                    <div className="responsiblePersons">{responsiblePersons}</div>
                                 }
                                 <div className="teamMembers">{teamAvatars}</div>
                             </div>               
