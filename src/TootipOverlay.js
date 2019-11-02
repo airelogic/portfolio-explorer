@@ -21,7 +21,7 @@ class ToolTipOverlay extends Component {
         if (this.props.tooltipInfo && this.props.tooltipInfo.responsiblePerson) {
             this.props.tooltipInfo.responsiblePerson.forEach((person, index) => {
                 responsiblePersons.push(
-                    <React.Fragment>
+                    <React.Fragment key={index}>
                         <Avatar name={person.name} size={40} round="4px" email={person.email} className="responsiblePersonAvatar" />
                         <div className="personName">{person.name}</div>
                     </React.Fragment>
