@@ -21,6 +21,7 @@ class AreaArcSVG extends Component {
             title: this.props.portfolioItem.title,
             description: this.props.portfolioItem.description,
             responsiblePerson: this.props.portfolioItem.responsiblePerson ? [this.props.portfolioItem.responsiblePerson] : null,
+            customer: this.props.portfolioItem.customer,
             team: this.props.portfolioItem.team
         };
         this.props.showToolTip(toolTipInfo);

@@ -1,15 +1,24 @@
 #tooltip {
     display: block;
     position: absolute;
-    background: cornsilk;
+    /*background: cornsilk;*/
+    background: whitesmoke;
     border: 1px solid #666666;
     border-radius: 3px;
-    padding: 5px;
+    padding: 10px;
     opacity: 0.9;
     max-width: 50%;
     z-index: 100;
     overflow: hidden;
     font-size: 0.9em;
+    filter: drop-shadow(5px 5px 8px #999999);
+}
+
+
+#tooltip h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 .team {
@@ -23,6 +32,10 @@
 
 .bold {
   font-weight: bolder;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .personName {
@@ -39,7 +52,8 @@
 
 .responsiblePersonAvatar.sb-avatar {
   /*border: 2px solid rgba(0, 0, 0, 0.5);*/  
-  margin-bottom: 2px;
+  margin-bottom: 0px;
+  margin-right: 5px;
 }
 
 .teamMembers {
@@ -47,7 +61,7 @@
 }
 
 .teamAvatar.sb-avatar {
-  margin-left: 5px;
+  margin-right: 3px;
   margin-top: 1px;
-  margin-bottom: 2px;
+  margin-bottom: 0px;
 }

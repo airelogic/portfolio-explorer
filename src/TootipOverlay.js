@@ -41,7 +41,7 @@ class ToolTipOverlay extends Component {
                     <div id="tooltip" style={{left: `${this.props.x + xOffset}px`, top: `${this.props.y + yOffset}px`}}>
                         <h2>{this.props.tooltipInfo.title}</h2>
                         {this.props.tooltipInfo.customer &&
-                            <div className="subtle">Customer: <span className="bold">{this.props.tooltipInfo.customer}</span></div>
+                            <div className="subtle italic">{this.props.tooltipInfo.customer}</div>
                         }
                         <p>{this.props.tooltipInfo.description}</p>
                         {hasTeamMembers &&
