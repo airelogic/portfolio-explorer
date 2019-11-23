@@ -25,8 +25,8 @@ function asSVGArc(WrappedComponent) {
 
             var x = unityCircleX * r;
             var y = unityCircleY * r * -1; // Invert for SVG y coords 
-
-            const path = "M " + r + " 0 A " + r + " " + r + " 0 0 0 " + x + " " + y;
+            var longSweep = deg > 180 ? 1 : 0;
+            const path = "M " + r + " 0 A " + r + " " + r + " 0 " + longSweep + " 0 " + x + " " + y;
             const rotate = rot ? "rotate(" + rot + ",0,0)" : "";
 
 

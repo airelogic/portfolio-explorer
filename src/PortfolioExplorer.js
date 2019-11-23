@@ -41,6 +41,19 @@ class PortfolioExplorer extends Component {
         this.setState({ currentPortfolioItem: {} });
     };
 
+    componentDidUpdate(prevProps) {
+        // Re-animate the pie slices
+        if (this.props.portfolio !== prevProps.portfolio) {
+            document.querySelectorAll("animateTransform").forEach(
+                element => {
+                    if (element.getAttribute("type") === "rotate") {
+                        element.beginElement(); 
+                    }
+                }
+            );
+        }
+    }
+
     render() {
         const r1 = 60
         const strokeWidthMax = 170;
@@ -57,7 +70,7 @@ class PortfolioExplorer extends Component {
         
         // Get the max scale of all items
         const itemCount = areas.length;
-        const spacing = 2 * itemCount;
+        const spacing = itemCount > 1 ? 2 * itemCount : 0;
         const fullProjDeg = 360 / itemCount;
         const projDeg = (360 - spacing) / itemCount;
         
@@ -78,7 +91,8 @@ class PortfolioExplorer extends Component {
         var rotInitial = 0;
         portfolio.portfolioGroups.forEach((portfolioGroup, index) => { 
             var groupAreaCount = portfolioGroup.areas.length;
-            var deg = (fullProjDeg * groupAreaCount) - 3;
+            var spacing = portfolio.portfolioGroups.length > 1 ? 3 : 0;
+            var deg = (fullProjDeg * groupAreaCount) - spacing;
             groupsSVG.push(<PortfolioGroupArcSVG r={40} deg={deg} rot={rotInitial} key={index}  showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioGroup={portfolioGroup}/>);
             rotInitial -= (fullProjDeg * groupAreaCount);
         }); 

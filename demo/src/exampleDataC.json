@@ -1,0 +1,50 @@
+{
+    "portfolio": "My Portfolio (from JSON file)",
+    "portfolioGroups": [
+        {
+            "groupTitle": "Group A",
+            "groupDescription": "Eu mea inermis invidunt. Pro epicuri consequat ne. Ea idque persius qui, per te eros mediocrem, tamquam legendos sapientem mei ea. Nec in dolore omittam, his ut saepe eirmod.",
+            "groupResponsiblePerson": [{
+                "name": "Bob the builder",
+                "email": "bob@builder.com",
+                "profileLink": "http://news.bbc.co.uk" 
+            }],
+            "areas": [
+                {
+                    "id": "456",
+                    "title": "Ipsum",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.",
+                    "scale": 9,
+                    "responsiblePerson": {
+                        "name": "Bugs Bunney",
+                        "email": "bugs@disney.com",
+                        "profileLink": "http://news.bbc.co.uk" 
+                    },
+                    "team": [
+                        {
+                            "name": "Scooby Doo",
+                            "email": "scobbyandshaggy@acme.com",
+                            "profileLink": "http://news.bbc.co.uk" 
+                        },{
+                            "name": "Mickey Mouse",
+                            "email": "mickey@mouse.org",
+                            "profileLink": "http://news.bbc.co.uk" 
+                        },{
+                            "name": "Inspector Gadget",
+                            "email": "inspector@gadget.com",
+                            "profileLink": "http://news.bbc.co.uk" 
+                        },{
+                            "name": "Danger Mouse",
+                            "email": "mouse@danger.co.uk",
+                            "profileLink": "http://news.bbc.co.uk" 
+                        },{
+                            "name": "Winnie the Pooh",
+                            "email": "bear@honey.co.uk",
+                            "profileLink": "http://news.bbc.co.uk" 
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

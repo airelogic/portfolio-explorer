@@ -39,7 +39,7 @@ class AreaArcSVG extends Component {
         const textDirection = "ltr";
         return (
             <g className="portfolioArea" {...passThroughProps} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
-                <animateTransform attributeName="transform" attributeType="XML" type="rotate" to={rot} dur="1s" begin="0s" repeatCount="1" fill="freeze"/>
+                <animateTransform class="rot" attributeName="transform" attributeType="XML" type="rotate" to={rot} dur="1s" begin="0s" repeatCount="1" fill="freeze" restart="always"/>
                 <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.1; 1.03; 1.0" begin="mouseover" additive="sum" restart="whenNotActive"/>
                 <AreaTeamArcSVG r={r2} strokeWidth={strokeWidth} {...passThroughProps} />
                 <AreaLeadArcSVG r={r1} {...passThroughProps} />
