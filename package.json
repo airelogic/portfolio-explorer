@@ -1,6 +1,6 @@
 {
   "name": "@odlingsmee/portfolio-explorer",
-  "version": "1.0.0-17",
+  "version": "1.0.0-18",
   "description": "Portfolio Explorer React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "react-avatar": "^3.7.0",
-    "react-sizeme": "^2.6.7"
+    "react-sizeme": "^2.6.10"
   },
   "peerDependencies": {
     "react": "16.x"
