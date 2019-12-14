@@ -105,8 +105,9 @@ class PortfolioExplorer extends Component {
                         <PortfolioExplorerGuides visible={false}/>
                         <AireLogicCogSVG transform="scale(2 2),translate(-62 -161)"/>
                         <OversightCircle cx={0} cy={0} r={25}/>
+                        {areasSVG}
                         {groupsSVG}
-                        {areasSVG}                                
+                                                        
                     </svg>
                 </div>
             </React.Fragment>
