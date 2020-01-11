@@ -8,6 +8,7 @@ class PortfolioGroupArcSVG extends Component {
         super(props);
         this.showAreaDetails = this.showAreaDetails.bind(this);
         this.hideAreaDetails = this.hideAreaDetails.bind(this);
+        this.portfolioGroupOnClick = this.portfolioGroupOnClick.bind(this);
     }
 
     showAreaDetails = () => {
@@ -23,11 +24,15 @@ class PortfolioGroupArcSVG extends Component {
         this.props.hideToolTip();
     };
 
+    portfolioGroupOnClick = () => {
+        this.props.portfoliogrouponclick ? this.props.portfoliogrouponclick(this.props.portfolioGroup.groupTitle) : undefined;
+    };
+
     render() {
-        const {portfolioGroup, showToolTip, hideToolTip, ...passThroughProps} = this.props;
+        const {portfolioGroup, showToolTip, hideToolTip, portfoliogrouponclick, ...passThroughProps} = this.props;
         return (
             
-            <g className="oversightArc"  onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
+            <g className="oversightArc" onClick={this.portfolioGroupOnClick} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
                 <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.03; 1.02; 1.0" begin="mouseover" additive="sum" restart="whenNotActive" />
 
                 <path {...passThroughProps}

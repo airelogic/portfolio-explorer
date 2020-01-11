@@ -13,6 +13,8 @@ class Demo extends Component {
           dataSource: "A"
       };
       this.handleInputChange = this.handleInputChange.bind(this);
+      this.demoAreaOnClick = this.demoAreaOnClick.bind(this);
+      this.demoPortfolioGroupOnClick = this.demoPortfolioGroupOnClick.bind(this);
   }
 
   handleInputChange(event) {
@@ -24,6 +26,14 @@ class Demo extends Component {
     });
 }
 
+demoAreaOnClick(areaId) {
+    console.log('Area clicked: ' + areaId);
+}
+
+demoPortfolioGroupOnClick(portfolioGroupId) {
+  console.log('Portfolio Group clicked: ' + portfolioGroupId);
+}
+
   render() {    
     return <React.Fragment>
       <label htmlFor="dataSource">Select data source</label>
@@ -32,7 +42,7 @@ class Demo extends Component {
           <option value="B">B</option>
           <option value="C">C</option>
       </select>
-      <PortfolioExplorer portfolio={this.state.data} title={this.state.data.portfolio} />
+      <PortfolioExplorer portfolio={this.state.data} title={this.state.data.portfolio} areaonclick={this.demoAreaOnClick} portfoliogrouponclick={this.demoPortfolioGroupOnClick}/>
     </React.Fragment>
   }
 }

@@ -86,14 +86,14 @@ class PortfolioExplorer extends Component {
             let strokeWidth = strokeWidthMax * ((portfolioItem.scale - 1) / itemScaleMax);
             let r2 = r1 + strokeWidth / 2;
             let pRot = index * fullProjDeg * -1;
-            areasSVG.push(<AreaArcSVG showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioItem={portfolioItem} key={index} r1={r1} r2={r2} deg={projDeg} rot={pRot} strokeWidth={strokeWidth}/>);
+            areasSVG.push(<AreaArcSVG areaonclick={this.props.areaonclick} showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioItem={portfolioItem} key={index} r1={r1} r2={r2} deg={projDeg} rot={pRot} strokeWidth={strokeWidth}/>);
         });
         var rotInitial = 0;
         portfolio.portfolioGroups.forEach((portfolioGroup, index) => { 
             var groupAreaCount = portfolioGroup.areas.length;
             var spacing = portfolio.portfolioGroups.length > 1 ? 3 : 0;
             var deg = (fullProjDeg * groupAreaCount) - spacing;
-            groupsSVG.push(<PortfolioGroupArcSVG r={40} deg={deg} rot={rotInitial} key={index}  showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioGroup={portfolioGroup}/>);
+            groupsSVG.push(<PortfolioGroupArcSVG portfoliogrouponclick={this.props.portfoliogrouponclick} r={40} deg={deg} rot={rotInitial} key={index}  showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioGroup={portfolioGroup}/>);
             rotInitial -= (fullProjDeg * groupAreaCount);
         }); 
         return (
