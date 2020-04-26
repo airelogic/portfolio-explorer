@@ -104,7 +104,7 @@ class PortfolioExplorer extends Component {
                     <ToolTipOverlay visible={this.state.show} x={this.state.toolTipX} y={this.state.toolTipY} tooltipInfo={this.state.toolTipInfo}/>
                     <svg viewBox="-250 -250 500 500" preserveAspectRatio="xMinYMin meet">
                         <PortfolioExplorerGuides visible={false}/>
-                        <PortfolioOversight portfolioOversight={portfolio.portFolioManagementTeam} showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} />                        
+                        <PortfolioOversight portfolioOversight={portfolio.portFolioManagementTeam} showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfoliooversightonclick={this.props.portfoliooversightonclick}/>                        
                         {areasSVG}
                         {groupsSVG}                                                        
                     </svg>

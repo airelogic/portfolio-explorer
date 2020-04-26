@@ -15,6 +15,7 @@ class Demo extends Component {
       this.handleInputChange = this.handleInputChange.bind(this);
       this.demoAreaOnClick = this.demoAreaOnClick.bind(this);
       this.demoPortfolioGroupOnClick = this.demoPortfolioGroupOnClick.bind(this);
+      this.demoOversightOnClick = this.demoOversightOnClick.bind(this);
   }
 
   handleInputChange(event) {
@@ -27,7 +28,11 @@ class Demo extends Component {
 }
 
 demoAreaOnClick(areaId) {
-    console.log('Area clicked: ' + areaId);
+  console.log('Area clicked: ' + areaId);
+}
+
+demoOversightOnClick(id) {
+  console.log('Portfolio oversight clicked: ' + id);
 }
 
 demoPortfolioGroupOnClick(portfolioGroupId) {
@@ -42,7 +47,7 @@ demoPortfolioGroupOnClick(portfolioGroupId) {
           <option value="B">B</option>
           <option value="C">C</option>
       </select>
-      <PortfolioExplorer portfolio={this.state.data} title={this.state.data.portfolio} areaonclick={this.demoAreaOnClick} portfoliogrouponclick={this.demoPortfolioGroupOnClick}/>
+      <PortfolioExplorer portfolio={this.state.data} title={this.state.data.portfolio} areaonclick={this.demoAreaOnClick} portfoliogrouponclick={this.demoPortfolioGroupOnClick} portfoliooversightonclick={this.demoOversightOnClick}/>
     </React.Fragment>
   }
 }

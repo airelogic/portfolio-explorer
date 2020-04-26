@@ -11,7 +11,7 @@ class PortfolioOversight extends Component {
         };
         this.showPortfolioOversightDetails = this.showPortfolioOversightDetails.bind(this);
         this.hidePortfolioOversightDetails = this.hidePortfolioOversightDetails.bind(this);
-        this.portfolioOversightOnClick = this.portfolioOversightOnClick.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
     showPortfolioOversightDetails = () => {
@@ -27,14 +27,15 @@ class PortfolioOversight extends Component {
         this.props.hideToolTip();
     };
 
-    portfolioOversightOnClick = () => {
-        return this.props.PortfolioOversightonclick ? this.props.PortfolioOversightonclick(this.props.portfolioItem.id) : undefined;
+    onClick = () => {
+        console.log('Oversight clicked');
+        return this.props.portfoliooversightonclick ? this.props.portfoliooversightonclick(this.props.portfolioOversight.id) : undefined;
     }
 
     render() {
-        const {portfolioOversight, ...passThroughProps} = this.props;
+        const {portfolioOversight, portfoliooversightonclick, showToolTip, hideToolTip, ...passThroughProps} = this.props;
         return (
-            <g {...passThroughProps} className="portfolioOversight" onClick={this.portfolioOversightOnClick} onMouseEnter={this.showPortfolioOversightDetails} onMouseLeave={this.hidePortfolioOversightDetails}>
+            <g {...passThroughProps} className="portfolioOversight" onClick={this.onClick} onMouseEnter={this.showPortfolioOversightDetails} onMouseLeave={this.hidePortfolioOversightDetails}>
                 <AireLogicCogSVG transform="scale(2 2),translate(-62 -161)"/>
                 <OversightCircle cx={0} cy={0} r={25}/>
             </g>
