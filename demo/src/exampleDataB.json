@@ -1,5 +1,29 @@
 {
     "portfolio": "My Portfolio (from JSON file)",
+    "portFolioManagementTeam": {
+        "id": "123123",
+        "title" : "PMO",
+        "description": "The PMO team doing loads of stuff",
+        "team": [
+            {
+                "name": "Inspector Gadget",
+                "email": "inspector@gadget.com",
+                "profileLink": "http://news.bbc.co.uk" 
+            },{
+                "name": "Danger Mouse",
+                "email": "mouse@danger.co.uk",
+                "profileLink": "http://news.bbc.co.uk" 
+            },{
+                "name": "Winnie the Pooh",
+                "email": "bear@honey.co.uk",
+                "profileLink": "http://news.bbc.co.uk" 
+            },{
+                "name": "Bugs Bunney",
+                "email": "bugs@disney.com",
+                "profileLink": "http://news.bbc.co.uk" 
+            }
+        ]
+    },
     "portfolioGroups": [
         {
             "groupTitle": "Group A",

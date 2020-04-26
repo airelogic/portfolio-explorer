@@ -8,6 +8,7 @@ import ToolTipOverlay from './TootipOverlay';
 
 import './PortfolioExplorer.css';
 import PortfolioExplorerGuides from './PortfolioExplorerGuides';
+import PortfolioOversight from './PortfolioOversight';
 
 class PortfolioExplorer extends Component {
 
@@ -103,11 +104,9 @@ class PortfolioExplorer extends Component {
                     <ToolTipOverlay visible={this.state.show} x={this.state.toolTipX} y={this.state.toolTipY} tooltipInfo={this.state.toolTipInfo}/>
                     <svg viewBox="-250 -250 500 500" preserveAspectRatio="xMinYMin meet">
                         <PortfolioExplorerGuides visible={false}/>
-                        <AireLogicCogSVG transform="scale(2 2),translate(-62 -161)"/>
-                        <OversightCircle cx={0} cy={0} r={25}/>
+                        <PortfolioOversight portfolioOversight={portfolio.portFolioManagementTeam} showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} />                        
                         {areasSVG}
-                        {groupsSVG}
-                                                        
+                        {groupsSVG}                                                        
                     </svg>
                 </div>
             </React.Fragment>
