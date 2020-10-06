@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import AireLogicCogSVG from './AireLogicCogSVG';
-import OversightCircle from "./OversightCircle";
 import PortfolioGroupArcSVG from './PortfolioGroupArcSVG';
 import AreaArcSVG from './AreaArcSVG';
 import PropTypes from 'prop-types';
@@ -87,14 +85,14 @@ class PortfolioExplorer extends Component {
             let strokeWidth = strokeWidthMax * ((portfolioItem.scale - 1) / itemScaleMax);
             let r2 = r1 + strokeWidth / 2;
             let pRot = index * fullProjDeg * -1;
-            areasSVG.push(<AreaArcSVG areaonclick={this.props.areaonclick} showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioItem={portfolioItem} key={index} r1={r1} r2={r2} deg={projDeg} rot={pRot} strokeWidth={strokeWidth}/>);
+            areasSVG.push(<AreaArcSVG portfolioColours={this.props.portfolioColours} areaonclick={this.props.areaonclick} showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioItem={portfolioItem} key={index} r1={r1} r2={r2} deg={projDeg} rot={pRot} strokeWidth={strokeWidth}/>);
         });
         var rotInitial = 0;
         portfolio.portfolioGroups.forEach((portfolioGroup, index) => { 
             var groupAreaCount = portfolioGroup.areas.length;
             var spacing = portfolio.portfolioGroups.length > 1 ? 3 : 0;
             var deg = (fullProjDeg * groupAreaCount) - spacing;
-            groupsSVG.push(<PortfolioGroupArcSVG portfoliogrouponclick={this.props.portfoliogrouponclick} r={40} deg={deg} rot={rotInitial} key={index}  showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioGroup={portfolioGroup}/>);
+            groupsSVG.push(<PortfolioGroupArcSVG portfolioColours={this.props.portfolioColours} portfoliogrouponclick={this.props.portfoliogrouponclick} r={40} deg={deg} rot={rotInitial} key={index}  showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfolioGroup={portfolioGroup}/>);
             rotInitial -= (fullProjDeg * groupAreaCount);
         }); 
         return (
@@ -104,7 +102,7 @@ class PortfolioExplorer extends Component {
                     <ToolTipOverlay visible={this.state.show} x={this.state.toolTipX} y={this.state.toolTipY} tooltipInfo={this.state.toolTipInfo}/>
                     <svg viewBox="-250 -250 500 500" preserveAspectRatio="xMinYMin meet">
                         <PortfolioExplorerGuides visible={false}/>
-                        <PortfolioOversight portfolioOversight={portfolio.portFolioManagementTeam} showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfoliooversightonclick={this.props.portfoliooversightonclick}/>                        
+                        <PortfolioOversight portfolioColours={this.props.portfolioColours} portfolioOversight={portfolio.portFolioManagementTeam} showToolTip={this.onShowToolTip} hideToolTip={this.onHideToolTip} onMouseMove={this.onHoverMove} portfoliooversightonclick={this.props.portfoliooversightonclick}/>                        
                         {areasSVG}
                         {groupsSVG}                                                        
                     </svg>
@@ -117,6 +115,7 @@ class PortfolioExplorer extends Component {
 PortfolioExplorer.propTypes = {
     portfolio: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
+    portfolioColours: PropTypes.object.isRequired
 };
 
 export default PortfolioExplorer;

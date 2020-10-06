@@ -70,7 +70,8 @@ AreaArcSVG.propTypes = {
     r2: PropTypes.number.isRequired,
     rot: PropTypes.number.isRequired,
     deg: PropTypes.number.isRequired,
-    name: PropTypes.string
+    name: PropTypes.string,
+    portfolioColours: PropTypes.object.isRequired
 };
 
 export default AreaArcSVG;

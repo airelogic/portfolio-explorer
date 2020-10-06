@@ -40,6 +40,11 @@ demoPortfolioGroupOnClick(portfolioGroupId) {
 }
 
   render() {    
+    const portfolioColours = {
+        item: '#a2d729',
+        itemLead: '#261447',
+        area: '#d80032'
+    };
     return <React.Fragment>
       <label htmlFor="dataSource">Select data source</label>
       <select id="dataSource" name="dataSource" value={this.state.dataSource} onChange={this.handleInputChange}>
@@ -47,7 +52,7 @@ demoPortfolioGroupOnClick(portfolioGroupId) {
           <option value="B">B</option>
           <option value="C">C</option>
       </select>
-      <PortfolioExplorer portfolio={this.state.data} title={this.state.data.portfolio} areaonclick={this.demoAreaOnClick} portfoliogrouponclick={this.demoPortfolioGroupOnClick} portfoliooversightonclick={this.demoOversightOnClick}/>
+      <PortfolioExplorer portfolio={this.state.data} title={this.state.data.portfolio} portfolioColours={portfolioColours} areaonclick={this.demoAreaOnClick} portfoliogrouponclick={this.demoPortfolioGroupOnClick} portfoliooversightonclick={this.demoOversightOnClick}/>
     </React.Fragment>
   }
 }

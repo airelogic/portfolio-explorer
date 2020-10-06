@@ -3,10 +3,11 @@ import asSVGArc from './GenericArcSVG';
 class AreaTeamArc extends Component {
 
     render() {
+        const {portfolioColours, ...passThrough} = this.props;
         return (
-            <path {...this.props}
+            <path {...passThrough}
                  fill="none"
-                 stroke="#759f06"
+                 stroke={portfolioColours.item}
                  strokeOpacity={0.5}/>
         );
     }

@@ -3,10 +3,11 @@ import asSVGArc from './GenericArcSVG';
 class AreaLeadArcSVG extends Component {
 
     render() {
+        const {portfolioColours, ...passThrough} = this.props;
         return (
-            <path {...this.props}
+            <path {...passThrough}
                  fill="none"
-                 stroke="#5e5e54"
+                 stroke={portfolioColours.itemLead}
                  strokeWidth={17}/>
         );
     }
