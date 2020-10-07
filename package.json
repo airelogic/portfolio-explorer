@@ -20,17 +20,17 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "react-avatar": "^3.7.0",
-    "react-sizeme": "^2.6.10"
+    "react-avatar": "^3.9.7",
+    "react-sizeme": "^2.6.12"
   },
   "peerDependencies": {
     "react": "16.x"
   },
   "devDependencies": {
-    "nwb": "0.23.x",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "inferno": "^5.6.1"
+    "inferno": "^5.6.1",
+    "nwb": "^0.25.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "author": "Michael Odling-Smee",
   "homepage": "airelogic.com",

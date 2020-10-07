@@ -29,7 +29,7 @@ class PortfolioGroupArcSVG extends Component {
     };
 
     render() {
-        const {portfolioColours, portfolioGroup, showToolTip, hideToolTip, portfoliogrouponclick, ...passThroughProps} = this.props;
+        const {portfolioTheme, portfolioGroup, showToolTip, hideToolTip, portfoliogrouponclick, ...passThroughProps} = this.props;
         return (
             
             <g className="oversightArc" onClick={this.portfolioGroupOnClick} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
@@ -37,7 +37,7 @@ class PortfolioGroupArcSVG extends Component {
 
                 <path {...passThroughProps}
                     fill="none"
-                    stroke={portfolioColours.area}
+                    stroke={portfolioTheme.area}
                     strokeWidth="15" />
             </g>
         );

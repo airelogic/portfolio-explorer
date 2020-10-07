@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-class HorizontalGuideSVG extends Component {
+import React from 'react';
 
-    render() {
-        const yoff = this.props.yoff ? this.props.yoff : 0;
-        return (
-            <React.Fragment>
+function HorizontalGuideSVG() {
+    const yoff = this.props.yoff ? this.props.yoff : 0;
+    return (
+        <React.Fragment>
             <text y={yoff - 2} x={this.props.x1 + 2}
                 fill="#666666"
                 font="ubuntu"
@@ -17,9 +16,8 @@ class HorizontalGuideSVG extends Component {
             stroke="#cccccc"
             strokeWidth={0.5}
             strokeOpacity={0.50} />
-            </React.Fragment>
-        );
-    }
+        </React.Fragment>
+    );
 }
 
 export default HorizontalGuideSVG;

@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-class OversightCircle extends Component {
+import React from 'react';
 
-    render() {
-        return (
-            <React.Fragment>
+function OversightCircle(props) {
+        
+    return (
+        <React.Fragment>
             <circle
-                cx={this.props.cx}
-                cy={this.props.cy}
-                r={this.props.r}
+                cx={props.cx}
+                cy={props.cy}
+                r={props.r}
                 fill="none"
                 stroke="#a9ae93"
                 strokeWidth={10}
@@ -15,9 +15,9 @@ class OversightCircle extends Component {
                 strokeOpacity={0.5}
             />
             <circle
-                cx={this.props.cx}
-                cy={this.props.cy}
-                r={this.props.r + 8}
+                cx={props.cx}
+                cy={props.cy}
+                r={props.r + 8}
                 fill="#a9ae93"
                 stroke="#a9ae93"
                 strokeWidth={0}
@@ -25,9 +25,8 @@ class OversightCircle extends Component {
                 strokeOpacity={0}
                 opacity={0}
             />
-            </React.Fragment>
-        );
-    }
+        </React.Fragment>
+    );
 }
 
 export default OversightCircle;
