@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-function asSVGArc(WrappedComponent) {
+export function asSVGArc(WrappedComponent) {
     
     return class GenericArcSVG extends Component {
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import asSVGArc from './GenericArcSVG';
 import './PortfolioGroupArcSVG.css';
 
-class PortfolioGroupArcSVG extends Component {
+export class PortfolioGroupArcSVG extends Component {
 
     constructor(props) {
         super(props);

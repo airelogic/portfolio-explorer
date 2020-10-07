@@ -4,7 +4,7 @@ import Avatar from 'react-avatar';
 
 import './ToolTipOverlay.css';
 
-class ToolTipOverlay extends Component {
+export class ToolTipOverlay extends Component {
 
     render() {
         var cursorDistance = 20;

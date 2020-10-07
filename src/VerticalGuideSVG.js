@@ -1,6 +1,6 @@
 import React from 'react';
 
-function VerticalGuideSVG(props) {
+export function VerticalGuideSVG(props) {
 
     const xoff = props.xoff ? props.xoff : 0;
     return (

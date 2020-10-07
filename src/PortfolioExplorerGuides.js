@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import VerticalGuideSVG from './VerticalGuideSVG';
 import HorizontalGuideSVG from './HorizontalGuideSVG';
 
-class PortfolioExplorerGuides extends Component {
+export class PortfolioExplorerGuides extends Component {
 
     xlines = [-250,-200, -150, -100, -50, 0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
     ylines = [-250,-200, -150, -100, -50, 0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500];

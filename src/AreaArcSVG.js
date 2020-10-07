@@ -4,7 +4,7 @@ import AreaLeadArcSVG from './AreaLeadArcSVG';
 import PropTypes from 'prop-types';
 import './AreaArcSVG.css';
 
-class AreaArcSVG extends Component {
+export class AreaArcSVG extends Component {
 
     constructor(props) {
         super(props);
@@ -37,7 +37,7 @@ class AreaArcSVG extends Component {
     }
 
     render() {
-        const {r1, r2, rot, strokeWidth, portfolioItem, showToolTip, hideToolTip, areaonclick, ...passThroughProps} = this.props;
+        const {r1, r2, rot, strokeWidth, portfolioItem, showToolTip, hideToolTip, areaonclick, portfolioTheme, ...passThroughProps} = this.props;
         const textRot = this.props.deg / - 2;
         const textRotTx = "rotate(" + textRot + ",0,0)";
         const textXPos = r1 * 1.3;
@@ -50,8 +50,8 @@ class AreaArcSVG extends Component {
             <g className="portfolioArea" {...passThroughProps} onClick={this.areaOnClick} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
                 <animateTransform className="rot" attributeName="transform" attributeType="XML" type="rotate" to={rot} dur="1s" begin="0s" repeatCount="1" fill="freeze" restart="always"/>
                 <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.1; 1.03; 1.0" begin="mouseover" additive="sum" restart="whenNotActive"/>
-                <AreaTeamArcSVG r={r2} strokeWidth={strokeWidth} {...passThroughProps} />
-                <AreaLeadArcSVG r={r1} {...passThroughProps} />
+                <AreaTeamArcSVG r={r2} strokeWidth={strokeWidth} {...passThroughProps} portfolioTheme={portfolioTheme}/>
+                <AreaLeadArcSVG r={r1} {...passThroughProps} portfolioTheme={portfolioTheme}/>
                 <g transform={textRotTx}>
                     <text alignmentBaseline="middle" x={r1*1.3} y="0" textAnchor={textAnchor} fill="black" fontSize="8" transform={textLocalRot}>{this.props.portfolioItem.title}</text>  
                 </g>
@@ -59,7 +59,7 @@ class AreaArcSVG extends Component {
                     TODO fix these hardcoded values. 
                     This opaque arc is needed to prevent mouseover jitter 
                 */}
-                <AreaTeamArcSVG r={140} strokeWidth={200} {...passThroughProps} opacity={0}/>
+                <AreaTeamArcSVG r={140} strokeWidth={200} {...passThroughProps} opacity={0} portfolioTheme={portfolioTheme}/>
             </g>
         );
     }
@@ -71,7 +71,7 @@ AreaArcSVG.propTypes = {
     rot: PropTypes.number.isRequired,
     deg: PropTypes.number.isRequired,
     name: PropTypes.string,
-    portfolioColours: PropTypes.object.isRequired
+    portfolioTheme: PropTypes.object.isRequired
 };
 
 export default AreaArcSVG;

@@ -8,7 +8,7 @@ import './PortfolioExplorer.css';
 import PortfolioExplorerGuides from './PortfolioExplorerGuides';
 import PortfolioOversight from './PortfolioOversight';
 
-class PortfolioExplorer extends Component {
+export class PortfolioExplorer extends Component {
 
     constructor(props) {
         super(props);

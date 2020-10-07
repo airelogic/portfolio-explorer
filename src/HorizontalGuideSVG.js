@@ -1,6 +1,6 @@
 import React from 'react';
 
-function HorizontalGuideSVG() {
+export function HorizontalGuideSVG() {
     const yoff = this.props.yoff ? this.props.yoff : 0;
     return (
         <React.Fragment>

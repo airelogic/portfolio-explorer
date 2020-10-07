@@ -1,6 +1,6 @@
 import React from 'react';
 
-function OversightCircle(props) {
+export function OversightCircle(props) {
         
     return (
         <React.Fragment>

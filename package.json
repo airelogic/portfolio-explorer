@@ -1,6 +1,6 @@
 {
   "name": "@odlingsmee/portfolio-explorer",
-  "version": "1.0.0-22",
+  "version": "1.1.0-03",
   "description": "Portfolio Explorer React component",
   "main": "lib/index.js",
   "module": "es/index.js",

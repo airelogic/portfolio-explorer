@@ -1,7 +1,7 @@
 import React from 'react';
 import asSVGArc from './GenericArcSVG';
 
-function AreaTeamArc(props) {
+export function AreaTeamArc(props) {
 
     const {portfolioTheme, ...passThrough} = props;
     return (

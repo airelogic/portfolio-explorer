@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AireLogicCogSVG(props) {    
+export function AireLogicCogSVG(props) {    
     return (
         <React.Fragment>
             <defs>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import OversightCircle from './OversightCircle';
 
-class PortfolioOversight extends Component {
+export class PortfolioOversight extends Component {
 
     constructor(props) {
         super(props);
