@@ -26,4 +26,4 @@ steps:
     displayName: "NPM Publish"
     inputs:
       command: 'publish'
-      publishEndpoint: 'Aire Logic - NPM (Write)'
+      publishEndpoint: 'AireLogic NPM'
