@@ -18,6 +18,11 @@ pool:
 
 steps:      
   - task: Npm@1
+    displayName: "NPM Install"
+    inputs:
+      command: 'ci'
+
+  - task: Npm@1
     displayName: "NPM Publish"
     inputs:
       command: 'publish'
