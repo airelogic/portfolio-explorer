@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import OversightCircle from './OversightCircle';
+import { PortfolioContext } from './PortfolioContext';
 
 export class PortfolioOversight extends Component {
 
@@ -33,12 +34,18 @@ export class PortfolioOversight extends Component {
     render() {
         const {portfolioOversight, portfoliooversightonclick, showToolTip, hideToolTip, portfolioTheme, ...passThroughProps} = this.props;
         return (
-            <g {...passThroughProps} className="portfolioOversight" onClick={this.onClick} onMouseEnter={this.showPortfolioOversightDetails} onMouseLeave={this.hidePortfolioOversightDetails}>
-                <g transform="translate(-15 -15)">
-                    <image height="30" width="30" xlinkHref={portfolioTheme.logo}/>
-                </g>
-                <OversightCircle cx={0} cy={0} r={25}/>
-            </g>
+            <React.Fragment>
+            <PortfolioContext.Consumer>
+                {(context) => (
+                    <g {...passThroughProps} className="portfolioOversight" onClick={this.onClick} onMouseMove={context.onHoverMove} onMouseEnter={this.showPortfolioOversightDetails} onMouseLeave={this.hidePortfolioOversightDetails}>
+                        <g transform="translate(-15 -15)">
+                            <image height="30" width="30" xlinkHref={portfolioTheme.logo}/>
+                        </g>
+                        <OversightCircle cx={0} cy={0} r={25}/>
+                    </g>
+                )}
+                </PortfolioContext.Consumer>
+            </React.Fragment>
         );
     }
 }

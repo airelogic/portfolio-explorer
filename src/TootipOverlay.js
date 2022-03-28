@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { withSize } from 'react-sizeme';
 import Avatar from 'react-avatar';
-
 import './ToolTipOverlay.css';
+import { PortfolioContext } from './PortfolioContext';
 
 export class ToolTipOverlay extends Component {
+
+    static contextType = PortfolioContext;
 
     render() {
         var cursorDistance = 20;
@@ -14,8 +16,8 @@ export class ToolTipOverlay extends Component {
         var pageHeight = window.innerHeight;
         var pageWidth = window.innerWidth;
         
-        var xOffset = this.props.x < 0.6 * pageWidth ? cursorDistance : -1 * (width + cursorDistance);
-        var yOffset = this.props.y < 0.6 * pageHeight ? cursorDistance : -1 * (height + cursorDistance);
+        var xOffset = this.context.state.x < 0.6 * pageWidth ? cursorDistance : -1 * (width + cursorDistance);
+        var yOffset = this.context.state.y < 0.6 * pageHeight ? cursorDistance : -1 * (height + cursorDistance);
         var teamAvatars = [];
         var responsiblePersons = [];
         if (this.props.tooltipInfo && this.props.tooltipInfo.responsiblePerson) {
@@ -37,23 +39,21 @@ export class ToolTipOverlay extends Component {
         return (
             <React.Fragment>
                 {visible &&
-
-                    <div id="tooltip" style={{left: `${this.props.x + xOffset}px`, top: `${this.props.y + yOffset}px`}}>
-                        <h2>{this.props.tooltipInfo.title}</h2>
-                        {this.props.tooltipInfo.customer &&
-                            <div className="subtle italic">{this.props.tooltipInfo.customer}</div>
-                        }
-                        <p>{this.props.tooltipInfo.description}</p>
-                        {hasTeamMembers &&
-                            <div className="team">
-                                {responsiblePerson &&
-                                    <div className="responsiblePersons">{responsiblePersons}</div>
+                            <div id="tooltip" style={{left: `${this.context.state.x + xOffset}px`, top: `${this.context.state.y + yOffset}px`}}>
+                                <h2>{this.props.tooltipInfo.title}</h2>
+                                {this.props.tooltipInfo.customer &&
+                                    <div className="subtle italic">{this.props.tooltipInfo.customer}</div>
                                 }
-                                <div className="teamMembers">{teamAvatars}</div>
-                            </div>               
-                        }   
-                            
-                    </div>
+                                <p>{this.props.tooltipInfo.description}</p>
+                                {hasTeamMembers &&
+                                    <div className="team">
+                                        {responsiblePerson &&
+                                            <div className="responsiblePersons">{responsiblePersons}</div>
+                                        }
+                                        <div className="teamMembers">{teamAvatars}</div>
+                                    </div>               
+                                }                                   
+                        </div>
                 }
             </React.Fragment>
         );

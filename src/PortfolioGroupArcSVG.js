@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import asSVGArc from './GenericArcSVG';
 import './PortfolioGroupArcSVG.css';
+import { PortfolioContext } from './PortfolioContext';
 
 export class PortfolioGroupArcSVG extends Component {
 
@@ -28,18 +29,28 @@ export class PortfolioGroupArcSVG extends Component {
         this.props.portfoliogrouponclick ? this.props.portfoliogrouponclick(this.props.portfolioGroup.groupTitle) : undefined;
     };
 
+    shouldComponentUpdate(nextProps) {
+        //Update the SVG only if the associated portfolio item has changed
+        return (this.props.portfolioGroup !== nextProps.portfolioGroup);
+    }
+
     render() {
         const {portfolioTheme, portfolioGroup, showToolTip, hideToolTip, portfoliogrouponclick, ...passThroughProps} = this.props;
         return (
-            
-            <g className="oversightArc" onClick={this.portfolioGroupOnClick} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
-                <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.03; 1.02; 1.0" begin="mouseover" additive="sum" restart="whenNotActive" />
+            <React.Fragment>
+            <PortfolioContext.Consumer>
+                {(context) => (
+                    <g className="oversightArc" onClick={this.portfolioGroupOnClick} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails} onMouseMove={context.onHoverMove}>
+                        <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.03; 1.02; 1.0" begin="mouseover" additive="sum" restart="whenNotActive" />
 
-                <path {...passThroughProps}
-                    fill="none"
-                    stroke={portfolioTheme.area}
-                    strokeWidth="15" />
-            </g>
+                        <path {...passThroughProps}
+                            fill="none"
+                            stroke={portfolioTheme.area}
+                            strokeWidth="15" />
+                    </g>
+                )}
+                </PortfolioContext.Consumer>
+            </React.Fragment>
         );
     }
 }

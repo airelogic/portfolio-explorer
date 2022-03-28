@@ -3,18 +3,20 @@ import AreaTeamArcSVG from './AreaTeamArcSVG';
 import AreaLeadArcSVG from './AreaLeadArcSVG';
 import PropTypes from 'prop-types';
 import './AreaArcSVG.css';
+import { PortfolioContext } from './PortfolioContext';
 
 export class AreaArcSVG extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            tooltip: false,
-            currentPortfolioItem: {},
-        };
         this.showAreaDetails = this.showAreaDetails.bind(this);
         this.hideAreaDetails = this.hideAreaDetails.bind(this);
         this.areaOnClick = this.areaOnClick.bind(this);
+    }
+
+    shouldComponentUpdate(nextProps) {
+        //Update the SVG only if the associated portfolio item has changed
+        return (this.props.portfolioItem !== nextProps.portfolioItem);
     }
 
     showAreaDetails = () => {
@@ -47,20 +49,26 @@ export class AreaArcSVG extends Component {
         const textLocalRot = flipText ? "rotate(180, " + textXPos + ",0)": "";
         const textAnchor = flipText ? "end" : "start";
         return (
-            <g className="portfolioArea" {...passThroughProps} onClick={this.areaOnClick} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
-                <animateTransform className="rot" attributeName="transform" attributeType="XML" type="rotate" to={rot} dur="1s" begin="0s" repeatCount="1" fill="freeze" restart="always"/>
-                <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.1; 1.03; 1.0" begin="mouseover" additive="sum" restart="whenNotActive"/>
-                <AreaTeamArcSVG r={r2} strokeWidth={strokeWidth} {...passThroughProps} portfolioTheme={portfolioTheme}/>
-                <AreaLeadArcSVG r={r1} {...passThroughProps} portfolioTheme={portfolioTheme}/>
-                <g transform={textRotTx}>
-                    <text alignmentBaseline="middle" x={r1*1.3} y="0" textAnchor={textAnchor} fill="black" fontSize="8" transform={textLocalRot}>{this.props.portfolioItem.title}</text>  
-                </g>
-                {/* 
-                    TODO fix these hardcoded values. 
-                    This opaque arc is needed to prevent mouseover jitter 
-                */}
-                <AreaTeamArcSVG r={140} strokeWidth={200} {...passThroughProps} opacity={0} portfolioTheme={portfolioTheme}/>
-            </g>
+            <React.Fragment>
+                <PortfolioContext.Consumer>
+                    {(context) => (
+                        <g className="portfolioArea" {...passThroughProps} onClick={this.areaOnClick} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails} onMouseMove={context.onHoverMove}>
+                            <animateTransform className="rot" attributeName="transform" attributeType="XML" type="rotate" to={rot} dur="1s" begin="0s" repeatCount="1" fill="freeze" restart="always"/>
+                            <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.1; 1.03; 1.0" begin="mouseover" additive="sum" restart="whenNotActive"/>
+                            <AreaTeamArcSVG r={r2} strokeWidth={strokeWidth} {...passThroughProps} portfolioTheme={portfolioTheme}/>
+                            <AreaLeadArcSVG r={r1} {...passThroughProps} portfolioTheme={portfolioTheme}/>
+                            <g transform={textRotTx}>
+                                <text alignmentBaseline="middle" x={r1*1.3} y="0" textAnchor={textAnchor} fill="black" fontSize="8" transform={textLocalRot}>{this.props.portfolioItem.title}</text>  
+                            </g>
+                            {/* 
+                                TODO fix these hardcoded values. 
+                                This opaque arc is needed to prevent mouseover jitter 
+                            */}
+                            <AreaTeamArcSVG r={140} strokeWidth={200} {...passThroughProps} opacity={0} portfolioTheme={portfolioTheme}/>
+                        </g>
+                    )}
+                </PortfolioContext.Consumer>
+            </React.Fragment>
         );
     }
 }
