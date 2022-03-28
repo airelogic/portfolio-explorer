@@ -1,0 +1,24 @@
+trigger:
+  batch: "true"
+  branches:
+    include:
+    - "master"
+    - "develop"
+  tags:
+    include: 
+    - "*"
+pr:
+  branches:
+    include:
+    - "master"
+    - "develop"
+
+pool:
+  vmImage: 'ubuntu-20.04'
+
+steps:      
+  - task: Npm@1
+    displayName: "NPM Publish"
+    inputs:
+      command: 'publish'
+      publishEndpoint: 'Aire Logic - NPM (Write)'
