@@ -1,6 +1,6 @@
 {
   "name": "@airelogic/portfolio-explorer",
-  "version": "1.3.0-pre.2",
+  "version": "1.3.0-pre.3",
   "description": "Portfolio Explorer React component",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -35,5 +35,12 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:airelogic/portfolio-explorer.git"
-  }
+  },
+  "files": [
+    "src/**/*",
+    "dist/**/*",
+    "LICENSE",
+    "package.json",
+    "package-lock.json"
+  ]
 }
