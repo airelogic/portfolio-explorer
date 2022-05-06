@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import ToolTipOverlay from "./TootipOverlay";
 
 import "./PortfolioExplorer.css";
-import PortfolioExplorerGuides from "./PortfolioExplorerGuides";
 import PortfolioOversight from "./PortfolioOversight";
 import { PortfolioContextProvider } from "./PortfolioContext";
 import { Portfolio, PortfolioArea, PortfolioTheme } from "./types";
@@ -38,7 +37,7 @@ export class PortfolioExplorer extends Component<
     this.onHideToolTip = this.onHideToolTip.bind(this);
   }
 
-  onShowToolTip = (toolTipInfo) => {
+  onShowToolTip = (toolTipInfo: PortfolioArea) => {
     this.setState({
       show: true,
       currentPortfolioItem: toolTipInfo,
@@ -52,7 +51,7 @@ export class PortfolioExplorer extends Component<
     });
   };
 
-  shouldComponentUpdate(nextProps: PortfolioExplorerProps, nextState) {
+  shouldComponentUpdate(nextProps: PortfolioExplorerProps, nextState: PortfolioExplorerState) {
     const oldAreaIds = this.props.portfolio.portfolioGroups.map((x) =>
       x.areas.map((area) => area.id)
     );
@@ -66,7 +65,7 @@ export class PortfolioExplorer extends Component<
     );
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     document.querySelectorAll("animateTransform").forEach((element) => {
       if (element.getAttribute("type") === "rotate") {
         element.beginElement();
@@ -82,13 +81,13 @@ export class PortfolioExplorer extends Component<
     const portfolio = this.props.portfolio;
 
     const areas = this.props.portfolio.portfolioGroups.reduce(
-      (arr, group) => [...group.areas, ...areas],
-      []
+      (arr, group) => [...group.areas, ...arr],
+      [] as PortfolioArea[]
     );
 
     // Get the max sized project
     const itemScaleMax = areas.reduce(
-      (max, area) => (area.scale - 1 > max ? area.scale - 1 : max),
+      (max, area) => area.scale ? (area.scale - 1 > max ? area.scale - 1 : max) : max,
       -1
     );
 
@@ -99,7 +98,7 @@ export class PortfolioExplorer extends Component<
 
     const areasSVG = areas.map((portfolioItem, index) => {
       let strokeWidth =
-        strokeWidthMax * ((portfolioItem.scale - 1) / itemScaleMax);
+        strokeWidthMax * (((portfolioItem.scale ?? 1)  - 1) / itemScaleMax);
       let r2 = r1 + strokeWidth / 2;
       let pRot = index * fullProjDeg * -1;
       return (
@@ -120,7 +119,7 @@ export class PortfolioExplorer extends Component<
     });
 
     var rotInitial = 0;
-    const groupsSVG = [];
+    const groupsSVG : Array<JSX.Element> = [];
     portfolio.portfolioGroups.forEach((portfolioGroup, index) => {
       var groupAreaCount = portfolioGroup.areas.length;
       var spacing = portfolio.portfolioGroups.length > 1 ? 3 : 0;
@@ -147,14 +146,13 @@ export class PortfolioExplorer extends Component<
           <h2>{title}</h2>
           <PortfolioContextProvider>
             <Fragment>
-              {this.state.show && (
+              {this.state.show && this.state.currentPortfolioItem && (
                 <ToolTipOverlay item={this.state.currentPortfolioItem} />
               )}
               <svg
                 viewBox="-250 -250 500 500"
                 preserveAspectRatio="xMinYMin meet"
               >
-                <PortfolioExplorerGuides visible={false} />
                 <PortfolioOversight
                   portfolioTheme={this.props.portfolioTheme}
                   portfolioOversight={portfolio.portFolioManagementTeam}
@@ -174,11 +172,5 @@ export class PortfolioExplorer extends Component<
     );
   }
 }
-
-PortfolioExplorer.propTypes = {
-  portfolio: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
-  portfolioTheme: PropTypes.object.isRequired,
-};
 
 export default PortfolioExplorer;

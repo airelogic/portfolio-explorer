@@ -11,11 +11,7 @@
     "umd"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "start": "nwb serve-react-demo",
-    "test": "nwb test-react",
-    "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "build": "rollup -c"
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",
@@ -34,6 +30,7 @@
     "nwb": "^0.25.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "rollup-plugin-import-css": "^3.0.3",
     "typescript": "^4.6.4"
   },
   "author": "Michael Odling-Smee",

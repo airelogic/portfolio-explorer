@@ -6,32 +6,29 @@ import "./ToolTipOverlay.css";
 import { PortfolioArea } from "./types";
 
 interface ToolTipOverlayProps {
-  item: PortfolioArea | null;
+  item: PortfolioArea;
   size: { width: number; height: number };
 }
 
 const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
   const context = usePortfolioContext();
-  var cursorDistance = 20;
-  var responsiblePerson = props.item && props.item.responsiblePerson;
-  var { width, height } = props.size;
-  var pageHeight = window.innerHeight;
-  var pageWidth = window.innerWidth;
+  const cursorDistance = 20;
+  const responsiblePerson = props.item && props.item.responsiblePerson;
+  const { width, height } = props.size;
+  const pageHeight = window.innerHeight;
+  const pageWidth = window.innerWidth;
 
-  var xOffset =
+  const xOffset =
     context.mousePosition.x < 0.6 * pageWidth
       ? cursorDistance
       : -1 * (width + cursorDistance);
-  var yOffset =
+      const yOffset =
     context.mousePosition.y < 0.6 * pageHeight
       ? cursorDistance
       : -1 * (height + cursorDistance);
-  var teamAvatars = [];
-  var responsiblePersons = [];
-  
-  if (props.item && props.item.responsiblePerson) {
-    props.item.responsiblePerson.forEach((person, index) => {
-      responsiblePersons.push(
+
+  const teamAvatars = props.item.responsiblePerson?.map((person, index) => {
+      return (
         <React.Fragment key={index}>
           <Avatar
             name={person.name}
@@ -43,11 +40,10 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
           <div className="personName">{person.name}</div>
         </React.Fragment>
       );
-    });
-  }
-  if (props.item && props.item.team) {
-    props.item.team.forEach((person, index) => {
-      teamAvatars.push(
+    }) ?? [];
+
+    const responsiblePersons = props.item.team.map((person, index) => {
+      return (
         <Avatar
           key={index}
           name={person.name}
@@ -58,7 +54,6 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
         />
       );
     });
-  }
   
   const hasTeamMembers = responsiblePersons.length > 0 || teamAvatars.length > 0;
   
