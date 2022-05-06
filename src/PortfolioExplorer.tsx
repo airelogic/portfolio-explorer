@@ -1,14 +1,12 @@
 import React, { Component, Fragment } from "react";
-import PortfolioGroupArcSVG from "./PortfolioGroupArcSVG";
 import AreaArcSVG from "./AreaArcSVG";
-import PropTypes from "prop-types";
-import ToolTipOverlay from "./TootipOverlay";
-
-import "./PortfolioExplorer.css";
-import PortfolioOversight from "./PortfolioOversight";
 import { PortfolioContextProvider } from "./PortfolioContext";
+import "./PortfolioExplorer.css";
+import PortfolioGroupArcSVG from "./PortfolioGroupArcSVG";
+import PortfolioOversight from "./PortfolioOversight";
+import ToolTipOverlay from "./TootipOverlay";
 import { Portfolio, PortfolioArea, PortfolioTheme } from "./types";
-import { SizeMe } from "react-sizeme";
+
 
 interface PortfolioExplorerProps {
   title: string;

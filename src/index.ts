@@ -1,2 +1,2 @@
-export * from './PortfolioExplorer';
+export { PortfolioExplorer } from './PortfolioExplorer';
 export * from './types';
