@@ -184,5 +184,3 @@ export class PortfolioExplorer extends Component<
     );
   }
 }
-
-export default PortfolioExplorer;

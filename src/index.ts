@@ -1,2 +1,2 @@
-import PortfolioExplorer from './PortfolioExplorer';
-export {PortfolioExplorer}
+export * from './PortfolioExplorer';
+export * from './types';

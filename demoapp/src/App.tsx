@@ -1,4 +1,4 @@
-import PortfolioExplorer from '../../src/PortfolioExplorer';
+import { PortfolioExplorer } from '../../src/PortfolioExplorer';
 
 function App() {
   return (
