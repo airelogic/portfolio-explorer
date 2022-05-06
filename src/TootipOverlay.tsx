@@ -1,6 +1,6 @@
 import React from "react";
 import Avatar from "react-avatar";
-import { withSize } from "react-sizeme";
+import { SizeMe, withSize } from "react-sizeme";
 import { usePortfolioContext } from "./PortfolioContext";
 import "./ToolTipOverlay.css";
 import { PortfolioArea } from "./types";
@@ -30,6 +30,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
   const teamAvatars = props.item.responsiblePerson?.map((person, index) => {
       return (
         <React.Fragment key={index}>
+          { /*@ts-ignore*/ }
           <Avatar
             name={person.name}
             size="40"
@@ -44,6 +45,8 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
 
     const responsiblePersons = props.item.team.map((person, index) => {
       return (
+        <>
+         { /*@ts-ignore*/ }
         <Avatar
           key={index}
           name={person.name}
@@ -52,6 +55,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
           email={person.email}
           className="teamAvatar"
         />
+        </>
       );
     });
   
@@ -82,4 +86,12 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
   );
 };
 
-export default withSize({ monitorHeight: true })(ToolTipOverlay);
+
+
+
+const WithSizeComponent : React.FC<Omit<ToolTipOverlayProps, "size">> = (props) => {
+  //@ts-ignore
+  return <SizeMe>{({size}) => <ToolTipOverlay size={{height: size.height ?? 0, width: size.width ?? 0}} {...props} />}</SizeMe>
+}
+
+export default WithSizeComponent;

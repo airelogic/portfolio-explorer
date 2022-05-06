@@ -61,7 +61,9 @@ export class AreaArcSVG extends Component<any> {
             <g className="portfolioArea" {...passThroughProps} onClick={this.areaOnClick} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
                 <animateTransform className="rot" attributeName="transform" attributeType="XML" type="rotate" to={rot} dur="1s" begin="0s" repeatCount="1" fill="freeze" restart="always"/>
                 <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.1; 1.03; 1.0" begin="mouseover" additive="sum" restart="whenNotActive"/>
+                { /* @ts-ignore */ }
                 <AreaTeamArcSVG r={r2} strokeWidth={strokeWidth} {...passThroughProps} portfolioTheme={portfolioTheme}/>
+                { /* @ts-ignore */ }
                 <AreaLeadArcSVG r={r1} {...passThroughProps} portfolioTheme={portfolioTheme}/>
                 <g transform={textRotTx}>
                     <text alignmentBaseline="middle" x={r1*1.3} y="0" textAnchor={textAnchor} fill="black" fontSize="8" transform={textLocalRot}>{this.props.portfolioItem.title}</text>  
@@ -70,6 +72,7 @@ export class AreaArcSVG extends Component<any> {
                     TODO fix these hardcoded values. 
                     This opaque arc is needed to prevent mouseover jitter 
                 */}
+                { /* @ts-ignore */ }
                 <AreaTeamArcSVG r={140} strokeWidth={200} {...passThroughProps} opacity={0} portfolioTheme={portfolioTheme}/>
             </g>
         );

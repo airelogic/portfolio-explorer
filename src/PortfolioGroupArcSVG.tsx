@@ -39,7 +39,7 @@ export class PortfolioGroupArcSVG extends Component<any> {
         return (
             <g className="oversightArc" onClick={this.portfolioGroupOnClick} onMouseEnter={this.showAreaDetails} onMouseLeave={this.hideAreaDetails}>
                 <animateTransform attributeName="transform" attributeType="XML" type="scale" dur="2s" keyTimes="0.0; 0.25; 0.8; 1.0" values="1.0; 1.03; 1.02; 1.0" begin="mouseover" additive="sum" restart="whenNotActive" />
-
+                { /* @ts-ignore */ }
                 <path {...passThroughProps}
                     fill="none"
                     stroke={portfolioTheme.area}

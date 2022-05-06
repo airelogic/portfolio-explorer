@@ -8,6 +8,7 @@ import "./PortfolioExplorer.css";
 import PortfolioOversight from "./PortfolioOversight";
 import { PortfolioContextProvider } from "./PortfolioContext";
 import { Portfolio, PortfolioArea, PortfolioTheme } from "./types";
+import { SizeMe } from "react-sizeme";
 
 interface PortfolioExplorerProps {
   title: string;
@@ -51,7 +52,10 @@ export class PortfolioExplorer extends Component<
     });
   };
 
-  shouldComponentUpdate(nextProps: PortfolioExplorerProps, nextState: PortfolioExplorerState) {
+  shouldComponentUpdate(
+    nextProps: PortfolioExplorerProps,
+    nextState: PortfolioExplorerState
+  ) {
     const oldAreaIds = this.props.portfolio.portfolioGroups.map((x) =>
       x.areas.map((area) => area.id)
     );
@@ -87,7 +91,8 @@ export class PortfolioExplorer extends Component<
 
     // Get the max sized project
     const itemScaleMax = areas.reduce(
-      (max, area) => area.scale ? (area.scale - 1 > max ? area.scale - 1 : max) : max,
+      (max, area) =>
+        area.scale ? (area.scale - 1 > max ? area.scale - 1 : max) : max,
       -1
     );
 
@@ -98,44 +103,50 @@ export class PortfolioExplorer extends Component<
 
     const areasSVG = areas.map((portfolioItem, index) => {
       let strokeWidth =
-        strokeWidthMax * (((portfolioItem.scale ?? 1)  - 1) / itemScaleMax);
+        strokeWidthMax * (((portfolioItem.scale ?? 1) - 1) / itemScaleMax);
       let r2 = r1 + strokeWidth / 2;
       let pRot = index * fullProjDeg * -1;
       return (
-        <AreaArcSVG
-          portfolioTheme={this.props.portfolioTheme}
-          areaonclick={this.props.areaonclick}
-          showToolTip={this.onShowToolTip}
-          hideToolTip={this.onHideToolTip}
-          portfolioItem={portfolioItem}
-          key={index}
-          r1={r1}
-          r2={r2}
-          deg={projDeg}
-          rot={pRot}
-          strokeWidth={strokeWidth}
-        />
+        <>
+          {/* @ts-ignore */}
+          <AreaArcSVG
+            portfolioTheme={this.props.portfolioTheme}
+            areaonclick={this.props.areaonclick}
+            showToolTip={this.onShowToolTip}
+            hideToolTip={this.onHideToolTip}
+            portfolioItem={portfolioItem}
+            key={index}
+            r1={r1}
+            r2={r2}
+            deg={projDeg}
+            rot={pRot}
+            strokeWidth={strokeWidth}
+          />
+        </>
       );
     });
 
     var rotInitial = 0;
-    const groupsSVG : Array<JSX.Element> = [];
+    const groupsSVG: Array<JSX.Element> = [];
     portfolio.portfolioGroups.forEach((portfolioGroup, index) => {
       var groupAreaCount = portfolioGroup.areas.length;
       var spacing = portfolio.portfolioGroups.length > 1 ? 3 : 0;
       var deg = fullProjDeg * groupAreaCount - spacing;
       groupsSVG.push(
-        <PortfolioGroupArcSVG
-          portfolioTheme={this.props.portfolioTheme}
-          portfoliogrouponclick={this.props.areaonclick}
-          r={40}
-          deg={deg}
-          rot={rotInitial}
-          key={index}
-          showToolTip={this.onShowToolTip}
-          hideToolTip={this.onHideToolTip}
-          portfolioGroup={portfolioGroup}
-        />
+        <>
+          {/* @ts-ignore */}
+          <PortfolioGroupArcSVG
+            portfolioTheme={this.props.portfolioTheme}
+            portfoliogrouponclick={this.props.areaonclick}
+            r={40}
+            deg={deg}
+            rot={rotInitial}
+            key={index}
+            showToolTip={this.onShowToolTip}
+            hideToolTip={this.onHideToolTip}
+            portfolioGroup={portfolioGroup}
+          />
+        </>
       );
       rotInitial -= fullProjDeg * groupAreaCount;
     });
@@ -153,6 +164,7 @@ export class PortfolioExplorer extends Component<
                 viewBox="-250 -250 500 500"
                 preserveAspectRatio="xMinYMin meet"
               >
+                {/* @ts-ignore */}
                 <PortfolioOversight
                   portfolioTheme={this.props.portfolioTheme}
                   portfolioOversight={portfolio.portFolioManagementTeam}
