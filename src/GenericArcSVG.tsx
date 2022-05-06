@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export function asSVGArc(WrappedComponent) {
+export function asSVGArc(WrappedComponent: any) {
     
-    return class GenericArcSVG extends Component {
+    return class GenericArcSVG extends Component<any> {
 
-        calcX(deg) {
+        calcX(deg: any) {
             return Math.cos(this.toRadians(deg));
         }
 
-        calcY(deg) {
+        calcY(deg: any) {
             return Math.sin(this.toRadians(deg));
         }
 
-        toRadians(angle) {
+        toRadians(angle: any) {
             return angle * (Math.PI / 180);
         }
 
