@@ -2,6 +2,7 @@ import React, { createRef, useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "./ToolTipOverlay.css";
 import { PortfolioArea } from "./types";
+import { Portal } from 'react-portal';
 
 interface ToolTipOverlayProps {
   item: Pick<
@@ -78,12 +79,12 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
     responsiblePersons.length > 0 || teamAvatars.length > 0;
 
   return (
+    <Portal>
     <div
       id="tooltip"
       style={{
         left: `${mousePosition.x + xOffset}px`,
-        top: `${mousePosition.y + yOffset}px`,
-        position: 'absolute'
+        top: `${mousePosition.y + yOffset}px`
       }}
       ref={ref}
     >
@@ -101,6 +102,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
         </div>
       )}
     </div>
+    </Portal>
   );
 };
 
