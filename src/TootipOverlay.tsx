@@ -12,10 +12,7 @@ interface ToolTipOverlayProps {
 }
 
 const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
-  });
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>();
   useEffect(() => {
     const update = (e: MouseEvent) => {
       setMousePosition({ x: e.x, y: e.y });
@@ -36,6 +33,9 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
   const { offsetWidth, offsetHeight } = ref.current ?? { offsetWidth: 0, offsetHeight: 0};
   const pageHeight = window.innerHeight;
   const pageWidth = window.innerWidth;
+
+
+  if(!mousePosition) return null;
 
   const xOffset =
     mousePosition.x < 0.6 * pageWidth
