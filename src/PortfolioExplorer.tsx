@@ -3,7 +3,12 @@ import AreaArcSVG from "./AreaArcSVG";
 import "./PortfolioExplorer.css";
 import PortfolioGroupArcSVG from "./PortfolioGroupArcSVG";
 import PortfolioOversight from "./PortfolioOversight";
-import { Portfolio, PortfolioArea, PortfolioTheme, PortfolioGroup } from "./types";
+import {
+  Portfolio,
+  PortfolioArea,
+  PortfolioTheme,
+  PortfolioGroup,
+} from "./types";
 
 interface PortfolioExplorerProps {
   title: string;
@@ -67,7 +72,7 @@ export class PortfolioExplorer extends Component<
     // Get the max sized project
     const itemScaleMax = areas.reduce(
       (max, area) =>
-        area.scale ? (area.scale - 1 > max ? area.scale - 1 : max) : max,
+        area.scale - 1 > max ? area.scale - 1 : max,
       -1
     );
 
@@ -78,7 +83,7 @@ export class PortfolioExplorer extends Component<
 
     const areasSVG = areas.map((portfolioItem, index) => {
       let strokeWidth =
-        strokeWidthMax * (((portfolioItem.scale ?? 1) - 1) / itemScaleMax);
+        strokeWidthMax * ((portfolioItem.scale - 1) / itemScaleMax);
       let r2 = r1 + strokeWidth / 2;
       let pRot = index * fullProjDeg * -1;
       return (

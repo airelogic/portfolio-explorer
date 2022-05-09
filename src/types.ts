@@ -39,5 +39,5 @@ export interface PortfolioArea extends PortfolioItemBase {
   dept?: string;
   responsiblePerson?: Person[];
   team: Person[];
-  scale?: number;
+  scale: number;
 }
