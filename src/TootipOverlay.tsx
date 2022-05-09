@@ -50,7 +50,6 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
     props.item.responsiblePerson?.map((person, index) => {
       return (
         <React.Fragment key={index}>
-          {/*@ts-ignore*/}
           <Avatar
             name={person.name}
             size="40"
@@ -65,17 +64,14 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
 
   const responsiblePersons = props.item.team.map((person, index) => {
     return (
-      <>
-        {/*@ts-ignore*/}
-        <Avatar
-          key={index}
-          name={person.name}
-          size="40"
-          round="4px"
-          email={person.email}
-          className="teamAvatar"
-        />
-      </>
+      <Avatar
+        key={index}
+        name={person.name}
+        size="40"
+        round="4px"
+        email={person.email}
+        className="teamAvatar"
+      />
     );
   });
 
@@ -88,6 +84,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
       style={{
         left: `${mousePosition.x + xOffset}px`,
         top: `${mousePosition.y + yOffset}px`,
+        position: 'absolute'
       }}
     >
       <h2>{props.item.title}</h2>
