@@ -1,12 +1,9 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import AreaArcSVG from "./AreaArcSVG";
-import { PortfolioContextProvider } from "./PortfolioContext";
 import "./PortfolioExplorer.css";
 import PortfolioGroupArcSVG from "./PortfolioGroupArcSVG";
 import PortfolioOversight from "./PortfolioOversight";
-import ToolTipOverlay from "./TootipOverlay";
-import { Portfolio, PortfolioArea, PortfolioTheme } from "./types";
-
+import { Portfolio, PortfolioArea, PortfolioTheme, PortfolioGroup } from "./types";
 
 interface PortfolioExplorerProps {
   title: string;
@@ -14,7 +11,7 @@ interface PortfolioExplorerProps {
   portfolioTheme: PortfolioTheme;
   areaonclick: (areaId: string) => void;
   portfoliooversightonclick: (areaId: string) => void;
-  portfolioAreaOnClick: (title: string) => void;
+  groupOnClick: (title: string) => void;
 }
 
 interface PortfolioExplorerState {
@@ -28,42 +25,22 @@ export class PortfolioExplorer extends Component<
 > {
   constructor(props: PortfolioExplorerProps) {
     super(props);
-    this.state = {
-      show: false,
-      currentPortfolioItem: null,
-    };
-    this.onShowToolTip = this.onShowToolTip.bind(this);
-    this.onHideToolTip = this.onHideToolTip.bind(this);
   }
-
-  onShowToolTip = (toolTipInfo: PortfolioArea) => {
-    this.setState({
-      show: true,
-      currentPortfolioItem: toolTipInfo,
-    });
-  };
-
-  onHideToolTip = () => {
-    this.setState({
-      show: false,
-      currentPortfolioItem: null,
-    });
-  };
 
   shouldComponentUpdate(
     nextProps: PortfolioExplorerProps,
-    nextState: PortfolioExplorerState
+    _: PortfolioExplorerState
   ) {
-    const oldAreaIds = this.props.portfolio.portfolioGroups.map((x) =>
-      x.areas.map((area) => area.id)
-    ).filter(x => x);
+    const oldAreaIds = this.props.portfolio.portfolioGroups
+      .map((x) => x.areas.map((area) => area.id))
+      .filter((x) => x);
     const newAreaIds = nextProps.portfolio.portfolioGroups.map((x) =>
       x.areas.map((area) => area.id)
-    )
+    );
 
     return !(
       oldAreaIds.length === newAreaIds.length &&
-      oldAreaIds.every(id => newAreaIds.includes(id))
+      oldAreaIds.every((id) => newAreaIds.includes(id))
     );
   }
 
@@ -105,22 +82,18 @@ export class PortfolioExplorer extends Component<
       let r2 = r1 + strokeWidth / 2;
       let pRot = index * fullProjDeg * -1;
       return (
-        <>
-          {/* @ts-ignore */}
-          <AreaArcSVG
-            portfolioTheme={this.props.portfolioTheme}
-            areaonclick={this.props.areaonclick}
-            showToolTip={this.onShowToolTip}
-            hideToolTip={this.onHideToolTip}
-            portfolioItem={portfolioItem}
-            key={index}
-            r1={r1}
-            r2={r2}
-            deg={projDeg}
-            rot={pRot}
-            strokeWidth={strokeWidth}
-          />
-        </>
+        <AreaArcSVG
+          portfolioTheme={this.props.portfolioTheme}
+          areaonclick={(area) => this.props.areaonclick(area.id)}
+          portfolioItem={portfolioItem}
+          key={index}
+          r1={r1}
+          r2={r2}
+          deg={projDeg}
+          rot={pRot}
+          strokeWidth={strokeWidth}
+          theme={this.props.portfolioTheme}
+        />
       );
     });
 
@@ -131,20 +104,17 @@ export class PortfolioExplorer extends Component<
       var spacing = portfolio.portfolioGroups.length > 1 ? 3 : 0;
       var deg = fullProjDeg * groupAreaCount - spacing;
       groupsSVG.push(
-        <>
-          {/* @ts-ignore */}
-          <PortfolioGroupArcSVG
-            portfolioTheme={this.props.portfolioTheme}
-            portfoliogrouponclick={this.props.areaonclick}
-            r={40}
-            deg={deg}
-            rot={rotInitial}
-            key={index}
-            showToolTip={this.onShowToolTip}
-            hideToolTip={this.onHideToolTip}
-            portfolioGroup={portfolioGroup}
-          />
-        </>
+        <PortfolioGroupArcSVG
+          portfolioTheme={this.props.portfolioTheme}
+          portfoliogrouponclick={(group: PortfolioGroup) =>
+            this.props.areaonclick(group.title)
+          }
+          r={40}
+          deg={deg}
+          rot={rotInitial}
+          key={index}
+          portfolioGroup={portfolioGroup}
+        />
       );
       rotInitial -= fullProjDeg * groupAreaCount;
     });
@@ -153,30 +123,18 @@ export class PortfolioExplorer extends Component<
       <React.Fragment>
         <div className="portfolioExplorer">
           <h2>{title}</h2>
-          <PortfolioContextProvider>
-            <Fragment>
-              {this.state.show && this.state.currentPortfolioItem && (
-                <ToolTipOverlay item={this.state.currentPortfolioItem} />
-              )}
-              <svg
-                viewBox="-250 -250 500 500"
-                preserveAspectRatio="xMinYMin meet"
-              >
-                {/* @ts-ignore */}
-                <PortfolioOversight
-                  portfolioTheme={this.props.portfolioTheme}
-                  portfolioOversight={portfolio.portFolioManagementTeam}
-                  showToolTip={this.onShowToolTip}
-                  hideToolTip={this.onHideToolTip}
-                  portfoliooversightonclick={
-                    this.props.portfoliooversightonclick
-                  }
-                />
-                {areasSVG}
-                {groupsSVG}
-              </svg>
-            </Fragment>
-          </PortfolioContextProvider>
+
+          <svg viewBox="-250 -250 500 500" preserveAspectRatio="xMinYMin meet">
+            {portfolio.portFolioManagementTeam && (
+              <PortfolioOversight
+                portfolioTheme={this.props.portfolioTheme}
+                oversight={portfolio.portFolioManagementTeam}
+                portfoliooversightonclick={this.props.portfoliooversightonclick}
+              />
+            )}
+            {areasSVG}
+            {groupsSVG}
+          </svg>
         </div>
       </React.Fragment>
     );

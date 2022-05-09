@@ -11,16 +11,17 @@ export interface Portfolio {
   portfolioGroups: PortfolioGroup[];
 }
 
-export interface PortFolioManagementTeamUI {
-  id?: string;
-  title?: string;
-  description?: string;
-  team?: Person[];
+interface PortfolioItemBase {
+  title: string;
+  description: string;
 }
 
-export interface PortfolioGroup {
-  groupTitle?: string;
-  groupDescription?: string;
+export interface PortFolioManagementTeamUI extends PortfolioItemBase {
+  id: string;
+  team: Person[];
+}
+
+export interface PortfolioGroup extends PortfolioItemBase {
   groupResponsiblePerson?: Person[];
   areas: PortfolioArea[];
 }
@@ -30,10 +31,8 @@ export interface Person {
   email?: string;
 }
 
-export interface PortfolioArea {
+export interface PortfolioArea extends PortfolioItemBase {
   id: string;
-  title: string;
-  description: string;
   startDate: Date | null;
   endDate: Date | null;
   customer?: string;

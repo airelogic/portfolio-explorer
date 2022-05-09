@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import { SizeMe, withSize } from "react-sizeme";
-import { usePortfolioContext } from "./PortfolioContext";
 import "./ToolTipOverlay.css";
 import { PortfolioArea } from "./types";
 
 interface ToolTipOverlayProps {
-  item: PortfolioArea;
+  item: Pick<
+    PortfolioArea,
+    "responsiblePerson" | "team" | "title" | "customer" | "description"
+  >;
   size: { width: number; height: number };
 }
 
+const useMousePosition = () => {
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
+  useEffect(() => {
+    const update = (e: MouseEvent) => {
+      setMousePosition({ x: e.x, y: e.y });
+    };
+    window.addEventListener("mousemove", update);
+    return () => {
+      window.removeEventListener("mousemove", update);
+    };
+  }, []);
+  return mousePosition;
+};
+
 const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
-  const context = usePortfolioContext();
+  const mousePosition = useMousePosition();
   const cursorDistance = 20;
   const responsiblePerson = props.item && props.item.responsiblePerson;
   const { width, height } = props.size;
@@ -19,18 +38,19 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
   const pageWidth = window.innerWidth;
 
   const xOffset =
-    context.mousePosition.x < 0.6 * pageWidth
+    mousePosition.x < 0.6 * pageWidth
       ? cursorDistance
       : -1 * (width + cursorDistance);
-      const yOffset =
-    context.mousePosition.y < 0.6 * pageHeight
+  const yOffset =
+    mousePosition.y < 0.6 * pageHeight
       ? cursorDistance
       : -1 * (height + cursorDistance);
 
-  const teamAvatars = props.item.responsiblePerson?.map((person, index) => {
+  const teamAvatars =
+    props.item.responsiblePerson?.map((person, index) => {
       return (
         <React.Fragment key={index}>
-          { /*@ts-ignore*/ }
+          {/*@ts-ignore*/}
           <Avatar
             name={person.name}
             size="40"
@@ -43,10 +63,10 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
       );
     }) ?? [];
 
-    const responsiblePersons = props.item.team.map((person, index) => {
-      return (
-        <>
-         { /*@ts-ignore*/ }
+  const responsiblePersons = props.item.team.map((person, index) => {
+    return (
+      <>
+        {/*@ts-ignore*/}
         <Avatar
           key={index}
           name={person.name}
@@ -55,18 +75,19 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
           email={person.email}
           className="teamAvatar"
         />
-        </>
-      );
-    });
-  
-  const hasTeamMembers = responsiblePersons.length > 0 || teamAvatars.length > 0;
-  
+      </>
+    );
+  });
+
+  const hasTeamMembers =
+    responsiblePersons.length > 0 || teamAvatars.length > 0;
+
   return (
     <div
       id="tooltip"
       style={{
-        left: `${context.mousePosition.x + xOffset}px`,
-        top: `${context.mousePosition.y + yOffset}px`,
+        left: `${mousePosition.x + xOffset}px`,
+        top: `${mousePosition.y + yOffset}px`,
       }}
     >
       <h2>{props.item.title}</h2>
@@ -86,12 +107,20 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
   );
 };
 
-
-
-
-const WithSizeComponent : React.FC<Omit<ToolTipOverlayProps, "size">> = (props) => {
+const WithSizeComponent: React.FC<Omit<ToolTipOverlayProps, "size">> = (
+  props
+) => {
   //@ts-ignore
-  return <SizeMe>{({size}) => <ToolTipOverlay size={{height: size.height ?? 0, width: size.width ?? 0}} {...props} />}</SizeMe>
-}
+  return (
+    <SizeMe>
+      {({ size }) => (
+        <ToolTipOverlay
+          size={{ height: size.height ?? 0, width: size.width ?? 0 }}
+          {...props}
+        />
+      )}
+    </SizeMe>
+  );
+};
 
 export default WithSizeComponent;
