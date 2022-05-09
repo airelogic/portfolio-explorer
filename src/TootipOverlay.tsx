@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import Avatar from "react-avatar";
-import { SizeMe, withSize } from "react-sizeme";
 import "./ToolTipOverlay.css";
 import { PortfolioArea } from "./types";
 
@@ -8,8 +7,7 @@ interface ToolTipOverlayProps {
   item: Pick<
     PortfolioArea,
     "responsiblePerson" | "team" | "title" | "customer" | "description"
-  >;
-  size: { width: number; height: number };
+  >
 }
 
 const useMousePosition = () => {
@@ -30,21 +28,22 @@ const useMousePosition = () => {
 };
 
 const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
+  const ref = createRef<HTMLDivElement>();
   const mousePosition = useMousePosition();
   const cursorDistance = 20;
   const responsiblePerson = props.item && props.item.responsiblePerson;
-  const { width, height } = props.size;
+  const { offsetWidth, offsetHeight } = ref.current ?? { offsetWidth: 0, offsetHeight: 0};
   const pageHeight = window.innerHeight;
   const pageWidth = window.innerWidth;
 
   const xOffset =
     mousePosition.x < 0.6 * pageWidth
       ? cursorDistance
-      : -1 * (width + cursorDistance);
+      : -1 * (offsetWidth + cursorDistance);
   const yOffset =
     mousePosition.y < 0.6 * pageHeight
       ? cursorDistance
-      : -1 * (height + cursorDistance);
+      : -1 * (offsetHeight + cursorDistance);
 
   const teamAvatars =
     props.item.responsiblePerson?.map((person, index) => {
@@ -86,6 +85,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
         top: `${mousePosition.y + yOffset}px`,
         position: 'absolute'
       }}
+      ref={ref}
     >
       <h2>{props.item.title}</h2>
       {props.item.customer && (
@@ -104,20 +104,4 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
   );
 };
 
-const WithSizeComponent: React.FC<Omit<ToolTipOverlayProps, "size">> = (
-  props
-) => {
-  //@ts-ignore
-  return (
-    <SizeMe>
-      {({ size }) => (
-        <ToolTipOverlay
-          size={{ height: size.height ?? 0, width: size.width ?? 0 }}
-          {...props}
-        />
-      )}
-    </SizeMe>
-  );
-};
-
-export default WithSizeComponent;
+export default ToolTipOverlay;
