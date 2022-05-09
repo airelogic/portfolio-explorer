@@ -56,14 +56,14 @@ export class PortfolioExplorer extends Component<
   ) {
     const oldAreaIds = this.props.portfolio.portfolioGroups.map((x) =>
       x.areas.map((area) => area.id)
-    );
+    ).filter(x => x);
     const newAreaIds = nextProps.portfolio.portfolioGroups.map((x) =>
       x.areas.map((area) => area.id)
-    );
+    )
 
     return !(
       oldAreaIds.length === newAreaIds.length &&
-      oldAreaIds.every(newAreaIds.includes)
+      oldAreaIds.every(id => newAreaIds.includes(id))
     );
   }
 
