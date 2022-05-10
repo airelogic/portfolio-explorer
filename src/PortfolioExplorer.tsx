@@ -14,9 +14,9 @@ interface PortfolioExplorerProps {
   title: string;
   portfolio: Portfolio;
   portfolioTheme: PortfolioTheme;
-  areaonclick: (areaId: string) => void;
+  areaonclick: (area: PortfolioArea) => void;
   portfoliooversightonclick: (areaId: string) => void;
-  groupOnClick: (title: string) => void;
+  groupOnClick: (group: PortfolioGroup) => void;
 }
 
 interface PortfolioExplorerState {
@@ -47,14 +47,6 @@ export class PortfolioExplorer extends Component<
       oldAreaIds.length === newAreaIds.length &&
       oldAreaIds.every((id) => newAreaIds.includes(id))
     );
-  }
-
-  componentDidUpdate() {
-    document.querySelectorAll("animateTransform").forEach((element) => {
-      if (element.getAttribute("type") === "rotate") {
-        element.beginElement();
-      }
-    });
   }
 
   render() {
@@ -89,7 +81,7 @@ export class PortfolioExplorer extends Component<
       return (
         <AreaArcSVG
           portfolioTheme={this.props.portfolioTheme}
-          areaonclick={(area) => this.props.areaonclick(area.id)}
+          areaonclick={this.props.areaonclick}
           portfolioItem={portfolioItem}
           key={index}
           r1={r1}
@@ -111,9 +103,7 @@ export class PortfolioExplorer extends Component<
       groupsSVG.push(
         <PortfolioGroupArcSVG
           portfolioTheme={this.props.portfolioTheme}
-          portfoliogrouponclick={(group: PortfolioGroup) =>
-            this.props.areaonclick(group.title)
-          }
+          portfoliogrouponclick={this.props.groupOnClick}
           r={40}
           deg={deg}
           rot={rotInitial}

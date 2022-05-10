@@ -19,26 +19,16 @@ export const PortfolioGroupArcSVG: React.FC<PortfolioGroupArcSVGProps> = ({ port
 
   return (
     <Fragment>
-      {showTooltip && <ToolTipOverlay item={{ ...portfolioGroup, team: [] }} />}
+      {showTooltip && <ToolTipOverlay item={{ ...portfolioGroup, team: portfolioGroup.groupResponsiblePerson ?? [] }} />}
       <g
         className="oversightArc"
         onClick={portfolioGroupOnClick}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
-        <animateTransform
-          attributeName="transform"
-          attributeType="XML"
-          type="scale"
-          dur="2s"
-          keyTimes="0.0; 0.25; 0.8; 1.0"
-          values="1.0; 1.03; 1.02; 1.0"
-          begin="mouseover"
-          additive="sum"
-          restart="whenNotActive"
-        />
+
         {/* @ts-ignore */}
-        <paths
+        <path
           {...svgProps}
           fill="none"
           stroke={portfolioTheme.area}

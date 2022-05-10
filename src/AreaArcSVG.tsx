@@ -35,7 +35,6 @@ export const AreaArcSVG: React.FC<AreaArcSVGProps> = ({
   };
 
   const textRot = deg / -2;
-  const textRotTx = "rotate(" + textRot + ",0,0)";
   const textXPos = r1 * 1.3;
   // We want the text to be easy to read (so flip it rather than display upside down)
   const textFullRot = rot + textRot;
@@ -54,29 +53,6 @@ export const AreaArcSVG: React.FC<AreaArcSVGProps> = ({
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
-        <animateTransform
-          className="rot"
-          attributeName="transform"
-          attributeType="XML"
-          type="rotate"
-          to={rot}
-          dur="1s"
-          begin="0s"
-          repeatCount="1"
-          fill="freeze"
-          restart="always"
-        />
-        <animateTransform
-          attributeName="transform"
-          attributeType="XML"
-          type="scale"
-          dur="2s"
-          keyTimes="0.0; 0.25; 0.8; 1.0"
-          values="1.0; 1.1; 1.03; 1.0"
-          begin="mouseover"
-          additive="sum"
-          restart="whenNotActive"
-        />
         {/* @ts-ignore */}
         <AreaTeamArcSVG
           r={r2}
@@ -89,7 +65,7 @@ export const AreaArcSVG: React.FC<AreaArcSVGProps> = ({
           {...passThroughProps}
           portfolioTheme={portfolioTheme}
         />
-        <g transform={textRotTx}>
+        <g transform={`rotate(${textFullRot},0,0)`}>
           <text
             alignmentBaseline="middle"
             x={r1 * 1.3}

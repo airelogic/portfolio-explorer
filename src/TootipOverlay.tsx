@@ -46,7 +46,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
       ? cursorDistance
       : -1 * (offsetHeight + cursorDistance);
 
-  const teamAvatars =
+  const responsiblePersons =
     props.item.responsiblePerson?.map((person, index) => {
       return (
         <React.Fragment key={index}>
@@ -62,7 +62,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
       );
     }) ?? [];
 
-  const responsiblePersons = props.item.team.map((person, index) => {
+  const teamAvatars = props.item.team.map((person, index) => {
     return (
       <Avatar
         key={index}
