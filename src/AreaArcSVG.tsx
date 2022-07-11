@@ -42,12 +42,13 @@ export const AreaArcSVG: React.FC<AreaArcSVGProps> = ({
   const textLocalRot = flipText ? "rotate(180, " + textXPos + ",0)" : "";
   const textAnchor = flipText ? "end" : "start";
 
-  const passThroughProps = { ...svgProps, r1, r2, deg, rot, strokeWidth };
+  const passThroughProps = { ...svgProps, deg, strokeWidth };
   return (
     <Fragment>
       {showTooltip && <ToolTipOverlay item={portfolioItem} />}
       <g
         className="portfolioArea"
+        transform={`rotate(${rot},0,0)`}
         {...passThroughProps}
         onClick={areaOnClick}
         onMouseEnter={() => setShowTooltip(true)}
