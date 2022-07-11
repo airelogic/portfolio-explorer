@@ -39,7 +39,6 @@ export const AreaArcSVG: React.FC<AreaArcSVGProps> = ({
   // We want the text to be easy to read (so flip it rather than display upside down)
   const textFullRot = rot + textRot;
   const flipText = textFullRot < -90 && textFullRot > -270;
-  const textLocalRot = flipText ? "rotate(180, " + textXPos + ",0)" : "";
   const textAnchor = flipText ? "end" : "start";
 
   const passThroughProps = { ...svgProps, deg, strokeWidth };
@@ -66,7 +65,7 @@ export const AreaArcSVG: React.FC<AreaArcSVGProps> = ({
           {...passThroughProps}
           portfolioTheme={portfolioTheme}
         />
-        <g transform={`rotate(${textFullRot},0,0)`}>
+        <g transform={`rotate(${textRot},0,0)`}>
           <text
             alignmentBaseline="middle"
             x={r1 * 1.3}
@@ -74,7 +73,6 @@ export const AreaArcSVG: React.FC<AreaArcSVGProps> = ({
             textAnchor={textAnchor}
             fill="black"
             fontSize="8"
-            transform={textLocalRot}
           >
             {portfolioItem.title}
           </text>
