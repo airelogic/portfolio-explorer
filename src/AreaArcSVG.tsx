@@ -48,7 +48,7 @@ export const AreaArcSVG: React.FC<AreaArcSVGProps> = ({
       {showTooltip && <ToolTipOverlay item={portfolioItem} />}
       <g
         className="portfolioArea"
-        transform={`rotate(${rot},0,0)`}
+        transform={`rotate(${rot*-1},0,0)`}
         {...passThroughProps}
         onClick={areaOnClick}
         onMouseEnter={() => setShowTooltip(true)}
