@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import AreaArcSVG from "./AreaArcSVG";
+import ProjectArcSVG from "./ProjectArcSVG";
 import "./PortfolioExplorer.css";
-import PortfolioGroupArcSVG from "./PortfolioGroupArcSVG";
+import AreaArcSVG from "./AreaArcSVG";
 import PortfolioOversight from "./PortfolioOversight";
 import {
   Portfolio,
@@ -70,16 +70,16 @@ export class PortfolioExplorer extends Component<
 
     // Get the max scale of all items
     const spacing = areas.length > 1 ? 2 * areas.length : 0;
-    const fullProjDeg = 360 / areas.length;
+    const fullAreaDeg = 360 / areas.length;
     const projDeg = (360 - spacing) / areas.length;
 
     const areasSVG = areas.map((portfolioItem, index) => {
       let strokeWidth =
         strokeWidthMax * ((portfolioItem.scale - 1) / itemScaleMax);
       let r2 = r1 + strokeWidth / 2;
-      let pRot = index * fullProjDeg * -1;
+      let pRot = index * fullAreaDeg * -1;
       return (
-        <AreaArcSVG
+        <ProjectArcSVG
           portfolioTheme={this.props.portfolioTheme}
           areaonclick={this.props.areaonclick}
           portfolioItem={portfolioItem}
@@ -97,11 +97,11 @@ export class PortfolioExplorer extends Component<
     var rotInitial = 0;
     const groupsSVG: Array<JSX.Element> = [];
     portfolio.portfolioGroups.forEach((portfolioGroup, index) => {
-      var groupAreaCount = portfolioGroup.areas.length;
+      var areaCount = portfolioGroup.areas.length;
       var spacing = portfolio.portfolioGroups.length > 1 ? 3 : 0;
-      var deg = fullProjDeg * groupAreaCount - spacing;
+      var deg = fullAreaDeg * areaCount - spacing;
       groupsSVG.push(
-        <PortfolioGroupArcSVG
+        <AreaArcSVG
           portfolioTheme={this.props.portfolioTheme}
           portfoliogrouponclick={this.props.groupOnClick}
           r={40}
@@ -111,7 +111,7 @@ export class PortfolioExplorer extends Component<
           portfolioGroup={portfolioGroup}
         />
       );
-      rotInitial -= fullProjDeg * groupAreaCount;
+      rotInitial -= fullAreaDeg * areaCount;
     });
 
     return (

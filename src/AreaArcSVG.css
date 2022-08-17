@@ -1,13 +1,7 @@
-.portfolioArea {
-    opacity: 0.85;
+.oversightArc {
+    opacity: 0.7;
 }
 
-.portfolioArea:hover {
+.oversightArc:hover {
     opacity: 1.0;
 }
-/* 
-@keyframes portfolio-area-animation {
-    100% {
-        opacity: 1;
-    }
-} */

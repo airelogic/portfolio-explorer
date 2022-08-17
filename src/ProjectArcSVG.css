@@ -1,0 +1,13 @@
+.portfolioArea {
+    opacity: 0.85;
+}
+
+.portfolioArea:hover {
+    opacity: 1.0;
+}
+/* 
+@keyframes portfolio-area-animation {
+    100% {
+        opacity: 1;
+    }
+} */
