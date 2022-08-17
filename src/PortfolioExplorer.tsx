@@ -94,7 +94,7 @@ export class PortfolioExplorer extends Component<
       );
     });
 
-    var rotInitial = 0;
+    var rotInitial = -5;
     const groupsSVG: Array<JSX.Element> = [];
     portfolio.portfolioGroups.forEach((portfolioGroup, index) => {
       var areaCount = portfolioGroup.areas.length;
