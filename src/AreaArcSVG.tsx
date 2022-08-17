@@ -1,6 +1,6 @@
 import React, { Fragment, SVGProps, useState } from "react";
 import asSVGArc from "./GenericArcSVG";
-import "./PortfolioGroupArcSVG.css";
+import "./AreaArcSVG.css";
 import ToolTipOverlay from "./TootipOverlay";
 import { PortfolioGroup, PortfolioTheme } from "./types";
 

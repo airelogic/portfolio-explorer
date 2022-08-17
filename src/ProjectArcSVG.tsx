@@ -1,5 +1,5 @@
 import React, { Component, Fragment, SVGProps, useState } from "react";
-import "./AreaArcSVG.css";
+import "./ProjectArcSVG.css";
 import ProjectLeadArcSVG from "./ProjectLeadArcSVG";
 import AreaTeamArcSVG from "./ProjectTeamArcSVG";
 import { PortfolioArea, PortfolioTheme } from "./types";
