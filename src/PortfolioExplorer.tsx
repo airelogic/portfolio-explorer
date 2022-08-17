@@ -54,26 +54,26 @@ export class PortfolioExplorer extends Component<
     const strokeWidthMax = 170;
 
     const title = this.props.title;
-    const portfolio = this.props.portfolio;
+    const { portfolioGroups: areas, portFolioManagementTeam: oversight } = this.props.portfolio;
 
-    const areas = this.props.portfolio.portfolioGroups.reduce(
+    const projects = areas.reduce(
       (arr, group) => [...group.areas, ...arr],
       [] as PortfolioArea[]
     );
 
     // Get the max sized project
-    const itemScaleMax = areas.reduce(
+    const itemScaleMax = projects.reduce(
       (max, area) =>
         area.scale - 1 > max ? area.scale - 1 : max,
       -1
     );
 
     // Get the max scale of all items
-    const spacing = areas.length > 1 ? 2 * areas.length : 0;
-    const fullAreaDeg = 360 / areas.length;
-    const projDeg = (360 - spacing) / areas.length;
+    const spacing = projects.length > 1 ? 2 * projects.length : 0;
+    const fullAreaDeg = 360 / projects.length;
+    const projDeg = (360 - spacing) / projects.length;
 
-    const areasSVG = areas.map((portfolioItem, index) => {
+    const projectsSVG = projects.map((portfolioItem, index) => {
       let strokeWidth =
         strokeWidthMax * ((portfolioItem.scale - 1) / itemScaleMax);
       let r2 = r1 + strokeWidth / 2;
@@ -94,13 +94,13 @@ export class PortfolioExplorer extends Component<
       );
     });
 
-    var rotInitial = -5;
-    const groupsSVG: Array<JSX.Element> = [];
-    portfolio.portfolioGroups.forEach((portfolioGroup, index) => {
-      var areaCount = portfolioGroup.areas.length;
-      var spacing = portfolio.portfolioGroups.length > 1 ? 3 : 0;
-      var deg = fullAreaDeg * areaCount - spacing;
-      groupsSVG.push(
+    var rotInitial = -fullAreaDeg;
+    const areasSVG: Array<JSX.Element> = [];
+    areas.forEach((portfolioGroup, index) => {
+      var projectCount = portfolioGroup.areas.length;
+      var spacing = areas.length > 1 ? 3 : 0;
+      var deg = fullAreaDeg * projectCount - spacing;
+      areasSVG.push(
         <AreaArcSVG
           portfolioTheme={this.props.portfolioTheme}
           portfoliogrouponclick={this.props.groupOnClick}
@@ -111,7 +111,7 @@ export class PortfolioExplorer extends Component<
           portfolioGroup={portfolioGroup}
         />
       );
-      rotInitial -= fullAreaDeg * areaCount;
+      rotInitial -= fullAreaDeg * projectCount;
     });
 
     return (
@@ -120,15 +120,15 @@ export class PortfolioExplorer extends Component<
           <h2>{title}</h2>
 
           <svg viewBox="-250 -250 500 500" preserveAspectRatio="xMinYMin meet">
-            {portfolio.portFolioManagementTeam && (
+            {oversight && (
               <PortfolioOversight
                 portfolioTheme={this.props.portfolioTheme}
-                oversight={portfolio.portFolioManagementTeam}
+                oversight={oversight}
                 portfoliooversightonclick={this.props.portfoliooversightonclick}
               />
             )}
+            {projectsSVG}
             {areasSVG}
-            {groupsSVG}
           </svg>
         </div>
       </React.Fragment>
