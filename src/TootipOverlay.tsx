@@ -3,6 +3,7 @@ import Avatar from "react-avatar";
 import "./ToolTipOverlay.css";
 import { PortfolioArea } from "./types";
 import { Portal } from 'react-portal';
+import SanitizedHTML from "./SanitizedHTML";
 
 interface ToolTipOverlayProps {
   item: Pick<
@@ -92,7 +93,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
       {props.item.customer && (
         <div className="subtle italic">{props.item.customer}</div>
       )}
-      <p>{props.item.description}</p>
+      <SanitizedHTML html={props.item.description}/>
       {hasTeamMembers && (
         <div className="team">
           {responsiblePerson && (
