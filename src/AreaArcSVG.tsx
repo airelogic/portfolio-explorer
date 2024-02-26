@@ -8,9 +8,10 @@ interface PortfolioGroupArcSVGProps extends SVGProps<SVGGElement> {
   portfoliogrouponclick?: (group: PortfolioGroup) => void;
   portfolioGroup: PortfolioGroup;
   portfolioTheme: PortfolioTheme;
+  showTeamMembers?: boolean;
 }
 
-export const AreaArcSVG: React.FC<PortfolioGroupArcSVGProps> = ({ portfoliogrouponclick, portfolioGroup, portfolioTheme, ...svgProps }) => {
+export const AreaArcSVG: React.FC<PortfolioGroupArcSVGProps> = ({ showTeamMembers, portfoliogrouponclick, portfolioGroup, portfolioTheme, ...svgProps }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const portfolioGroupOnClick = () => {
@@ -19,7 +20,7 @@ export const AreaArcSVG: React.FC<PortfolioGroupArcSVGProps> = ({ portfoliogroup
 
   return (
     <Fragment>
-      {showTooltip && <ToolTipOverlay item={{ ...portfolioGroup, team: portfolioGroup.groupResponsiblePerson ?? [] }} />}
+      {showTooltip && <ToolTipOverlay item={{ ...portfolioGroup, team: portfolioGroup.groupResponsiblePerson ?? [] }} showTeamMembers={showTeamMembers} />}
       <g
         className="areaArc"
         onClick={portfolioGroupOnClick}

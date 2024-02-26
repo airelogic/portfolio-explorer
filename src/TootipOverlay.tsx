@@ -9,7 +9,8 @@ interface ToolTipOverlayProps {
   item: Pick<
     PortfolioArea,
     "responsiblePerson" | "team" | "title" | "customer" | "description"
-  >
+  >,
+  showTeamMembers?: boolean
 }
 
 const useMousePosition = () => {
@@ -31,6 +32,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
   const mousePosition = useMousePosition();
   const cursorDistance = 20;
   const responsiblePerson = props.item && props.item.responsiblePerson;
+  const showTeamMembers = props.showTeamMembers?? false;
   const { offsetWidth, offsetHeight } = ref.current ?? { offsetWidth: 0, offsetHeight: 0};
   const pageHeight = window.innerHeight;
   const pageWidth = window.innerWidth;
@@ -94,7 +96,7 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
         <div className="subtle italic">{props.item.customer}</div>
       )}
       <SanitizedHTML html={props.item.description}/>
-      {hasTeamMembers && (
+      {(showTeamMembers && hasTeamMembers) && (
         <div className="team">
           {responsiblePerson && (
             <div className="responsiblePersons">{responsiblePersons}</div>

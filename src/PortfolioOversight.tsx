@@ -8,7 +8,8 @@ export const PortfolioOversight: React.FC<{
   portfoliooversightonclick?: (areaId: string) => void;
   portfolioTheme: PortfolioTheme;
   oversight: PortFolioManagementTeamUI;
-}> = ({ portfoliooversightonclick, portfolioTheme, oversight }) => {
+  showTeamMembers?: boolean;
+}> = ({ portfoliooversightonclick, portfolioTheme, oversight, showTeamMembers }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const onClick = () => {
@@ -17,7 +18,7 @@ export const PortfolioOversight: React.FC<{
 
   return (
     <Fragment>
-      {showTooltip && <ToolTipOverlay item={oversight} />}
+      {showTooltip && <ToolTipOverlay item={oversight} showTeamMembers={showTeamMembers} />}
       <g
         className="portfolioOversight"
         onClick={onClick}

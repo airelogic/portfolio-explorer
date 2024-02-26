@@ -15,9 +15,11 @@ interface AreaArcSVGProps extends SVGProps<SVGGElement> {
   r2: number;
   rot: number;
   deg: number;
+  showTeamMembers?: boolean;
 }
 
 export const ProjectArcSVG: React.FC<AreaArcSVGProps> = ({
+  showTeamMembers,
   areaonclick,
   portfolioItem,
   portfolioTheme,
@@ -45,7 +47,7 @@ export const ProjectArcSVG: React.FC<AreaArcSVGProps> = ({
   const passThroughProps = { ...svgProps, deg, strokeWidth };
   return (
     <Fragment>
-      {showTooltip && <ToolTipOverlay item={portfolioItem} />}
+      {showTooltip && <ToolTipOverlay item={portfolioItem} showTeamMembers={showTeamMembers} />}
       <g
         className="project"
         transform={`rotate(${rot*-1},0,0)`}
