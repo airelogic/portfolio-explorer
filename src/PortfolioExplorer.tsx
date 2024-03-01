@@ -17,6 +17,7 @@ interface PortfolioExplorerProps {
   areaonclick: (area: PortfolioArea) => void;
   portfoliooversightonclick: (areaId: string) => void;
   groupOnClick: (group: PortfolioGroup) => void;
+  showTeamMembers?: boolean;
 }
 
 interface PortfolioExplorerState {
@@ -90,6 +91,7 @@ export class PortfolioExplorer extends Component<
           rot={pRot}
           strokeWidth={strokeWidth}
           theme={this.props.portfolioTheme}
+          showTeamMembers={this.props.showTeamMembers}
         />
       );
     });
@@ -109,6 +111,7 @@ export class PortfolioExplorer extends Component<
           rot={rotInitial}
           key={index}
           portfolioGroup={portfolioGroup}
+          showTeamMembers={this.props.showTeamMembers}
         />
       );
       rotInitial -= fullAreaDeg * projectCount;
@@ -125,6 +128,7 @@ export class PortfolioExplorer extends Component<
                 portfolioTheme={this.props.portfolioTheme}
                 oversight={oversight}
                 portfoliooversightonclick={this.props.portfoliooversightonclick}
+                showTeamMembers={this.props.showTeamMembers}
               />
             )}
             {projectsSVG}
