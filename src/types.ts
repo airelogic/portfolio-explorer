@@ -33,6 +33,7 @@ export interface Person {
 
 export interface PortfolioArea extends PortfolioItemBase {
   id: string;
+  alias?: string | null;
   startDate: Date | null;
   endDate: Date | null;
   customer?: string;

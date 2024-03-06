@@ -8,7 +8,7 @@ import SanitizedHTML from "./SanitizedHTML";
 interface ToolTipOverlayProps {
   item: Pick<
     PortfolioArea,
-    "responsiblePerson" | "team" | "title" | "customer" | "description"
+    "responsiblePerson" | "team" | "title" | "customer" | "description" | "alias"
   >,
   showTeamMembers?: boolean
 }
@@ -32,13 +32,13 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
   const mousePosition = useMousePosition();
   const cursorDistance = 20;
   const responsiblePerson = props.item && props.item.responsiblePerson;
-  const showTeamMembers = props.showTeamMembers?? false;
-  const { offsetWidth, offsetHeight } = ref.current ?? { offsetWidth: 0, offsetHeight: 0};
+  const showTeamMembers = props.showTeamMembers ?? false;
+  const { offsetWidth, offsetHeight } = ref.current ?? { offsetWidth: 0, offsetHeight: 0 };
   const pageHeight = window.innerHeight;
   const pageWidth = window.innerWidth;
 
 
-  if(!mousePosition) return null;
+  if (!mousePosition) return null;
 
   const xOffset =
     mousePosition.x < 0.6 * pageWidth
@@ -83,28 +83,32 @@ const ToolTipOverlay: React.FC<ToolTipOverlayProps> = (props) => {
 
   return (
     <Portal>
-    <div
-      id="tooltip"
-      style={{
-        left: `${mousePosition.x + xOffset}px`,
-        top: `${mousePosition.y + yOffset}px`
-      }}
-      ref={ref}
-    >
-      <h2>{props.item.title}</h2>
-      {props.item.customer && (
-        <div className="subtle italic">{props.item.customer}</div>
-      )}
-      <SanitizedHTML html={props.item.description}/>
-      {(showTeamMembers && hasTeamMembers) && (
-        <div className="team">
-          {responsiblePerson && (
-            <div className="responsiblePersons">{responsiblePersons}</div>
-          )}
-          <div className="teamMembers">{teamAvatars}</div>
-        </div>
-      )}
-    </div>
+      <div
+        id="tooltip"
+        style={{
+          left: `${mousePosition.x + xOffset}px`,
+          top: `${mousePosition.y + yOffset}px`
+        }}
+        ref={ref}
+      >
+        <h2>
+          {props.item.alias
+            ? `${props.item.alias} (${props.item.title})`
+            : props.item.title}
+        </h2>
+        {props.item.customer && (
+          <div className="subtle italic">{props.item.customer}</div>
+        )}
+        <SanitizedHTML html={props.item.description} />
+        {(showTeamMembers && hasTeamMembers) && (
+          <div className="team">
+            {responsiblePerson && (
+              <div className="responsiblePersons">{responsiblePersons}</div>
+            )}
+            <div className="teamMembers">{teamAvatars}</div>
+          </div>
+        )}
+      </div>
     </Portal>
   );
 };

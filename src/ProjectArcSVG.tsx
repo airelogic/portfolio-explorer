@@ -15,11 +15,11 @@ interface AreaArcSVGProps extends SVGProps<SVGGElement> {
   r2: number;
   rot: number;
   deg: number;
-  showTeamMembers?: boolean;
+showTeamMembers?: boolean;
 }
 
 export const ProjectArcSVG: React.FC<AreaArcSVGProps> = ({
-  showTeamMembers,
+showTeamMembers,
   areaonclick,
   portfolioItem,
   portfolioTheme,
@@ -78,7 +78,7 @@ export const ProjectArcSVG: React.FC<AreaArcSVGProps> = ({
             fontSize="8"
             transform={textLocalRot}
           >
-            {portfolioItem.title}
+            {portfolioItem.alias ? portfolioItem.alias : portfolioItem.title}
           </text>
         </g>
         {/* 
