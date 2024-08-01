@@ -1,6 +1,6 @@
 {
   "name": "@airelogic/portfolio-explorer",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Portfolio Explorer React component",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
